@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Julie for Atlassian</title>
+<link rel="preload" as="image" href="img/playbook.gif">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c0c; --unlit:#161918; --dim:#30353a; --grey:#9da3a1; --ink:#f7f8f8;
+  /* Atlassian blue, sampled from atlassian.com/software/rovo computed styles (#1868db buttons, #1558bc text, #123263 hover) */
+  --al:#1558bc; --al-dark:#1868db; --al-light:#1868db; --al-press:#123263;
+  --signal:var(--al-light);
+  --p:5px; --r:2px;
+  --gut:48px;
+}
+@media (max-width:1023px){:root{--p:4px;--r:1.6px;--gut:32px}}
+@media (max-width:639px){:root{--p:3px;--r:1.2px;--gut:16px}}
+/* one deliberate dark board in every theme */
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{
+  margin:0;color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.55;
+  background-color:var(--bg);
+  background-image:radial-gradient(circle at center, var(--unlit) var(--r), transparent calc(var(--r) + .5px));
+  background-size:var(--p) var(--p);background-position:0 0;
+  overflow-x:clip;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(var(--gut), env(safe-area-inset-left, 0px));padding-right:max(var(--gut), env(safe-area-inset-right, 0px))}
+section{padding:clamp(72px,12vw,160px) 0 0}
+section:last-of-type{padding-bottom:clamp(72px,12vw,160px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+
+/* pixel cursors at one scale: arrow for the page, hand for anything clickable */
+html,body{cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAmCAYAAADeB1slAAAAoElEQVR42tXWsQ6AIAwE0NO4ydj//0JGnXE6BxIFlcLZyUSM9ygoWENIawgJTjXDuc4XeEncBQsvYowAADNLALBv2/QvgZekv6C1ZJyglWS84KtER/BWoid4KtEV1Er0BSWJrsDMbu/z/z5ewKSc47x0dzKTMyFXByW6OzlPLn8umvLzaCk5x+er6krerwet5rx/D94+WNsLfUHp2+QuOACwf3PbIEKQ2QAAAABJRU5ErkJggg==") 1 1, auto;cursor:-webkit-image-set(url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAmCAYAAADeB1slAAAAoElEQVR42tXWsQ6AIAwE0NO4ydj//0JGnXE6BxIFlcLZyUSM9ygoWENIawgJTjXDuc4XeEncBQsvYowAADNLALBv2/QvgZekv6C1ZJyglWS84KtER/BWoid4KtEV1Er0BSWJrsDMbu/z/z5ewKSc47x0dzKTMyFXByW6OzlPLn8umvLzaCk5x+er6krerwet5rx/D94+WNsLfUHp2+QuOACwf3PbIEKQ2QAAAABJRU5ErkJggg==") 1x, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAABMCAYAAAAr4jQ9AAAA5ElEQVR42u2buw6DMBAEcZQulPf/X+iS1EmbbGNFft0qsx1IgEbsYFtAeZzn6/jI87rKYZTbYR4AdqeoA5rsTlAhADpz1x211q/tiEg9TlAhAEY74OYEFQJgtgPZnaBCAKx2IJsTVAiA3Q7sdoIKAZDNgdVOUCEAsjsw2wkqBICbA6OdoEIAuDvQ6wQVAsDNgYjoOl7fa1MhAHY7oJ3W53grrIkBcHNAO68d1rmLOsGaGAA3B1qd5w4AYJ7p343q+VtzpV+do0IAjB4H+H8AgH8bB1ZfcPS4QIUAcHegFeZCAEzOG4lmd5++QTYGAAAAAElFTkSuQmCC") 2x) 1 1, auto;cursor:image-set(url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAmCAYAAADeB1slAAAAoElEQVR42tXWsQ6AIAwE0NO4ydj//0JGnXE6BxIFlcLZyUSM9ygoWENIawgJTjXDuc4XeEncBQsvYowAADNLALBv2/QvgZekv6C1ZJyglWS84KtER/BWoid4KtEV1Er0BSWJrsDMbu/z/z5ewKSc47x0dzKTMyFXByW6OzlPLn8umvLzaCk5x+er6krerwet5rx/D94+WNsLfUHp2+QuOACwf3PbIEKQ2QAAAABJRU5ErkJggg==") 1x, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAABMCAYAAAAr4jQ9AAAA5ElEQVR42u2buw6DMBAEcZQulPf/X+iS1EmbbGNFft0qsx1IgEbsYFtAeZzn6/jI87rKYZTbYR4AdqeoA5rsTlAhADpz1x211q/tiEg9TlAhAEY74OYEFQJgtgPZnaBCAKx2IJsTVAiA3Q7sdoIKAZDNgdVOUCEAsjsw2wkqBICbA6OdoEIAuDvQ6wQVAsDNgYjoOl7fa1MhAHY7oJ3W53grrIkBcHNAO68d1rmLOsGaGAA3B1qd5w4AYJ7p343q+VtzpV+do0IAjB4H+H8AgH8bB1ZfcPS4QIUAcHegFeZCAEzOG4lmd5++QTYGAAAAAElFTkSuQmCC") 2x) 1 1, auto}
+html a,html button,html .btn,html .tdot,html .tarrow,html .copy,html [role="button"],html summary,html label[for]{cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAYAAAClI5npAAAAq0lEQVR42u2XMQ7AIAhFtXGro/c/oaOd7UTSEg2NAcUUNo3G7xMQvCPsjLE+x1cp3jHa4Rabp26ec37Np5RYSSwnYAJMgAkIoxu5MuS+BBoZsrbWUWT2JTBKBhNZT0D6v8dkgAico8cHsMKvb0zNUyT0RcFDoUhU6K0JezWglAFhfVXxLBJqCITZB+K+Qh8BUAaZStoX/uMDvZ5SL4FZvmCNyT5RwFUfqCNwA/HmV64CYZjQAAAAAElFTkSuQmCC") 9 1, pointer;cursor:-webkit-image-set(url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAYAAAClI5npAAAAq0lEQVR42u2XMQ7AIAhFtXGro/c/oaOd7UTSEg2NAcUUNo3G7xMQvCPsjLE+x1cp3jHa4Rabp26ec37Np5RYSSwnYAJMgAkIoxu5MuS+BBoZsrbWUWT2JTBKBhNZT0D6v8dkgAico8cHsMKvb0zNUyT0RcFDoUhU6K0JezWglAFhfVXxLBJqCITZB+K+Qh8BUAaZStoX/uMDvZ5SL4FZvmCNyT5RwFUfqCNwA/HmV64CYZjQAAAAAElFTkSuQmCC") 1x, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABMCAYAAADdq7GlAAAA+klEQVR42u3asQ6CMBSFYTBuMvL+T9gRZ9xrUmiukpZ+Z4VI/NPz91Kdp2Bey7KXrr+3bZ4azmMaPACMDmCOdj6lVLx/XdemnaACAAAAAAAAAAAAAAAAAAAAAAyY59UPbO0MUQUA4IBrc+IMca/5vKgzVAAADmg7UWccOUIFABjdAb3/vn/kjNwR+fdRAQDMAXUd+vU+Hr0/6gQVAIADqjvU1buCFQAAAMV8zfm1/wPsLbnDVAAADijnbk7gABUAoO5d4G77vjNBFQCgzgF5Z/Iztd7nAhUAgAPG2vetAAAAiDngbnOBCgAAAAAAAGAO+N8sbgUAAEDT+QAEi1f6Iwz7lgAAAABJRU5ErkJggg==") 2x) 9 1, pointer;cursor:image-set(url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAYAAAClI5npAAAAq0lEQVR42u2XMQ7AIAhFtXGro/c/oaOd7UTSEg2NAcUUNo3G7xMQvCPsjLE+x1cp3jHa4Rabp26ec37Np5RYSSwnYAJMgAkIoxu5MuS+BBoZsrbWUWT2JTBKBhNZT0D6v8dkgAico8cHsMKvb0zNUyT0RcFDoUhU6K0JezWglAFhfVXxLBJqCITZB+K+Qh8BUAaZStoX/uMDvZ5SL4FZvmCNyT5RwFUfqCNwA/HmV64CYZjQAAAAAElFTkSuQmCC") 1x, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABMCAYAAADdq7GlAAAA+klEQVR42u3asQ6CMBSFYTBuMvL+T9gRZ9xrUmiukpZ+Z4VI/NPz91Kdp2Bey7KXrr+3bZ4azmMaPACMDmCOdj6lVLx/XdemnaACAAAAAAAAAAAAAAAAAAAAAAyY59UPbO0MUQUA4IBrc+IMca/5vKgzVAAADmg7UWccOUIFABjdAb3/vn/kjNwR+fdRAQDMAXUd+vU+Hr0/6gQVAIADqjvU1buCFQAAAMV8zfm1/wPsLbnDVAAADijnbk7gABUAoO5d4G77vjNBFQCgzgF5Z/Iztd7nAhUAgAPG2vetAAAAiDngbnOBCgAAAAAAAGAO+N8sbgUAAEDT+QAEi1f6Iwz7lgAAAABJRU5ErkJggg==") 2x) 9 1, pointer}
+/* dot type */
+.jtc{margin:0;position:relative;width:100%}
+.jtc canvas{display:block;max-width:100%}
+.hero-grid>*,.split>*,.who>*,.cards>*,.bignum>*,.step>*{min-width:0}
+.jtc[data-role="kicker"]{margin-bottom:calc(var(--p)*6)}
+.jtc[data-role="h2"]{margin-bottom:calc(var(--p)*8)}
+.jtc[data-role="lead"],.jtc[data-role="body"]{margin-bottom:calc(var(--p)*7)}
+.gap{height:calc(var(--p)*6)}
+.hi-row{display:flex;align-items:center;gap:calc(var(--p)*3);margin-bottom:calc(var(--p)*6)}
+.hi-row .jtc{flex:1;min-width:0;margin:0}
+
+.label{font-family:Doto,monospace;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--grey)}
+.label b{color:var(--signal);font-weight:800}
+
+/* hero */
+.hero{padding-top:clamp(40px,8vw,96px)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:start}
+@media (max-width:899px){.hero-grid{grid-template-columns:1fr}}
+.call{position:relative;margin:0}
+.call img{display:block;width:100%;height:auto;border-radius:10px}
+.cursor{position:absolute;left:53%;top:37%;pointer-events:none}
+.cursor svg{display:block;width:24px;height:38px}
+.cursor span{display:inline-block;margin:2px 0 0 18px;background:var(--al-dark);color:#fff;font:500 15px/1 Inter,sans-serif;padding:6px 9px;border-radius:3px}
+.meta-note{margin-top:calc(var(--p)*6);padding:16px 18px;border:1px solid var(--dim);border-radius:8px;background:rgba(11,12,12,.85)}
+.meta-note p{margin:6px 0 0;color:var(--ink);text-wrap:pretty}
+
+/* cards */
+.cards{display:grid;gap:16px;grid-template-columns:repeat(3,1fr);margin:calc(var(--p)*2) 0 calc(var(--p)*8)}
+.cards.two{grid-template-columns:repeat(2,1fr)}
+@media (max-width:899px){.cards,.cards.two{grid-template-columns:1fr}}
+.card{background:var(--unlit);border:1px solid var(--dim);border-radius:10px;padding:22px 22px 24px}
+.card.hi{background:var(--al-dark);border-color:var(--al-dark)}
+.card h3{margin:12px 0 6px;font-size:19px;font-weight:600;line-height:1.3;text-wrap:balance}
+.card p{margin:0;color:#c9cdcc;text-wrap:pretty}
+.card.hi p{color:#ffffff}
+.card .ico{display:block}
+.span2{grid-column:span 2}
+@media (max-width:899px){.span2{grid-column:auto}}
+
+/* stats */
+.stat{background:var(--al-dark);border-radius:10px;padding:24px 22px}
+.stat .jtc{margin-bottom:10px}
+.stat p{margin:0;color:#ffffff}
+.bignum{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:calc(var(--p)*8)}
+.bignum p.cap{margin:0;color:var(--ink);font-size:18px;text-wrap:pretty}
+@media (max-width:899px){.bignum{grid-template-columns:1fr;gap:12px}}
+
+/* links */
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.btn{font-family:Doto,monospace;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:15px;
+  color:#fff;text-decoration:none;border:0;border-radius:8px;padding:13px 18px;display:inline-flex;gap:10px;align-items:center;
+  background:var(--al-dark);box-shadow:0 3px 0 var(--al-press);transform:translateY(0);
+  transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease}
+.btn:hover{background:var(--al);transform:translateY(-3px);box-shadow:0 6px 0 var(--al-press),0 12px 24px rgba(24,104,219,.35)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--al-press);transition-duration:.05s}
+.btn:focus-visible{outline:2px solid var(--al-light);outline-offset:3px}
+.links{align-items:center}
+.pwbox{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px;color:var(--grey)}
+.pwbox.in-card{color:#ffffff;margin:6px 0}
+.pwtext{font-family:Inter,system-ui,sans-serif;font-size:15px;color:var(--ink);background:var(--unlit);border:1px solid var(--dim);padding:5px 9px;border-radius:6px;user-select:all;text-transform:none;letter-spacing:0}
+.copy{font:600 13px/1 Inter,system-ui,sans-serif;color:var(--ink);background:transparent;border:1px solid var(--dim);border-radius:6px;padding:7px 10px;}
+.in-card .copy{border-color:#b89bf0}
+.copy:hover{border-color:var(--al-light);color:var(--al-light)}
+.in-card .copy:hover{color:#fff;border-color:#fff}
+.copy:focus-visible{outline:2px solid var(--al-light);outline-offset:2px}
+.pwtext,.copy{box-sizing:border-box;height:34px;display:inline-flex;align-items:center;line-height:1;padding-top:0;padding-bottom:0}
+.btn .arr{font-family:Inter,sans-serif;font-weight:600}
+.chip{font-family:Doto,monospace;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:var(--ink);border:1px solid var(--dim);border-radius:8px;padding:12px 16px;background:var(--bg);user-select:all}
+@media (prefers-reduced-motion: reduce){.btn,.btn:hover,.btn:active{transform:none;transition:none}}
+
+/* ladder chart */
+.split{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:899px){.split{grid-template-columns:1fr}}
+.rightcol{display:grid;gap:16px;min-width:0}
+.order{background:var(--al-dark);border-radius:10px;padding:22px 24px}
+.order h3{margin:0 0 10px;font-size:19px;font-weight:600}
+.order ol{margin:0;padding-left:22px;color:#ffffff}
+.order li{margin:3px 0}
+.order ol{columns:2 220px;column-gap:28px}
+.order li{break-inside:avoid;margin:0;padding:3px 0}
+.ladder{background:var(--unlit);border:1px solid var(--dim);border-radius:10px;padding:22px 24px}
+.ladder h3{margin:0 0 6px;font-size:19px;font-weight:600}
+.ladder .end{margin:6px 0}
+.rung{display:grid;grid-template-columns:calc(var(--p)*28) 1fr;align-items:center;gap:14px;padding:5px 0;position:relative;cursor:default;outline:none}
+.rung canvas{display:block}
+.rung span{color:var(--ink);font-size:15px}
+.rung .tip{position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:Doto,monospace;font-weight:800;font-size:13px;color:var(--signal);opacity:0;transition:opacity .15s;background:var(--unlit);padding-left:8px}
+.rung:hover .tip,.rung:focus .tip{opacity:1}
+
+/* matching funnel */
+.steps{list-style:none;margin:calc(var(--p)*2) 0 calc(var(--p)*8);padding:0;display:grid;gap:14px}
+.step{display:grid;grid-template-columns:calc(var(--p)*15 + 8px) 1fr 1.2fr;gap:22px;align-items:start;background:var(--unlit);border:1px solid var(--dim);border-radius:10px;padding:20px 22px}
+.step.hi{background:var(--al-dark);border-color:var(--al-dark)}
+.step h3{margin:0 0 4px;font-size:18px;font-weight:600}
+.step .k{font-family:Doto,monospace;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.step.hi .k{color:#ffffff}
+.step p{margin:0;color:#c9cdcc;text-wrap:pretty}
+.step.hi p{color:#ffffff}
+.step .proof{font-size:15px}
+@media (max-width:899px){.step{grid-template-columns:calc(var(--p)*15 + 8px) 1fr}.step .proof{grid-column:2}}
+
+/* figures */
+.figure{margin:0 0 calc(var(--p)*8)}
+.figure img{display:block;max-width:100%;height:auto;border-radius:10px;margin:0 auto}
+.figure figcaption{margin-top:10px}
+
+/* who */
+.who{display:grid;grid-template-columns:1fr;gap:calc(var(--p)*6)}
+@media (max-width:899px){.who{grid-template-columns:1fr}}
+.likes{list-style:none;margin:0;padding:0;display:grid;gap:14px 28px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.likes li{border-left:2px solid var(--dim);padding-left:14px}
+.likes b{display:block;font-family:Doto,monospace;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--ink)}
+.likes span{color:var(--grey);text-wrap:pretty}
+.photos{columns:3 220px;column-gap:12px}
+.photos figure{margin:0 0 12px;break-inside:avoid;position:relative}
+.photos img,.photos video{display:block;width:100%;height:auto;border-radius:8px;background:var(--unlit)}
+.photo-row{display:flex;gap:12px;margin-top:calc(var(--p) * -6)}
+.photo-row figure{margin:0;position:relative;flex:var(--ar) 1 0;min-width:0}
+.photo-row img{display:block;width:100%;height:auto;border-radius:8px}
+.photo-row figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-size:13px;font-style:italic;color:#fff;text-align:right;border-radius:0 0 8px 8px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-size:13px;font-style:italic;color:#fff;text-align:right;border-radius:0 0 8px 8px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+
+/* quotes */
+.tcar{max-width:880px}
+.tview{overflow:hidden}
+.ttrack{display:flex;align-items:flex-start;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.ttrack blockquote{flex:0 0 100%;width:100%;max-width:none;min-width:0;padding:0 4px 0 0;box-sizing:border-box}
+.ttrack blockquote p,.ttrack blockquote footer{max-width:62ch}
+blockquote{margin:0;max-width:62ch}
+.tnav{display:flex;align-items:center;gap:16px;margin-top:28px}
+.tdots{display:flex;align-items:center;gap:8px}
+.tdot{width:10px;height:10px;border-radius:5px;border:0;padding:0;background:var(--dim);transition:width .3s ease, background-color .3s ease}
+.tdot:hover{background:var(--grey)}
+.tdot[aria-current="true"]{width:44px;background:var(--al-light)}
+.tdot:focus-visible,.tarrow:focus-visible{outline:2px solid var(--al-light);outline-offset:3px}
+.tarrow{width:44px;height:44px;border-radius:50%;border:0;background:var(--al-dark);color:#fff;font:600 20px/1 Inter,sans-serif;
+  box-shadow:0 3px 0 var(--al-press);transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease}
+.tarrow:hover{background:var(--al);transform:translateY(-2px);box-shadow:0 5px 0 var(--al-press)}
+.tarrow:active{transform:translateY(2px);box-shadow:0 1px 0 var(--al-press);transition-duration:.05s}
+@media (prefers-reduced-motion: reduce){.ttrack,.tdot,.tarrow{transition:none}.tarrow:hover,.tarrow:active{transform:none}}
+blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;color:var(--ink);text-wrap:pretty}
+
+
+/* photo bento: one grid, rearranged by screen width; photos fill their tiles */
+.bento{display:grid;gap:12px;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:100px;
+  grid-template-areas:"st co to ca" "st co to ca" "st co to ca" "st co he pa" "pi pi he pa" "pi pi he pa" "bi pr pr pa" "bi pr pr pa"}
+.bento figure{margin:0;position:relative;min-width:0;min-height:0;overflow:hidden;border-radius:8px;background:var(--unlit)}
+.bento img,.bento video{display:block;width:100%;height:100%;object-fit:cover;border-radius:8px}
+.bento figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;font-size:13px;font-style:italic;color:#fff;text-align:right;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.b-st{grid-area:st}.b-co{grid-area:co}.b-to{grid-area:to}.b-ca{grid-area:ca}.b-he{grid-area:he}.b-pa{grid-area:pa}.b-pi{grid-area:pi}.b-bi{grid-area:bi}.b-pr{grid-area:pr}
+.b-pi img{object-position:50% 30%}.b-pr img{object-position:50% 20%}.b-to img{object-position:50% 40%}
+@media (max-width:899px){.bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:110px;
+  grid-template-areas:"st co" "st co" "st co" "pi pi" "pi pi" "to ca" "to ca" "to ca" "he pa" "he pa" "bi pa" "pr pr" "pr pr"}}
+@media (max-width:639px){.bento{grid-auto-rows:82px;gap:8px}.bento figcaption{font-size:11px;padding:18px 8px 6px}}
+/* reveal */
+.rv{transition:opacity .7s ease, transform .7s ease}
+.rv.pre{opacity:0;transform:translateY(12px)}
+@media (prefers-reduced-motion: reduce){.rv,.rv.pre{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="label" style="margin:0 0 calc(var(--p)*6)">For Carola Pescio Canale · <b>Principal Product Designer, Rovo &amp; AI</b> · Atlassian · Julie Torrisi-Coffey</p>
+    <div class="hero-grid">
+      <div>
+        <p class="jtc" data-role="kicker">> Hi Carola</p>
+        <p class="jtc" data-role="hero">Unleash the potential of every <em>team.</em></p>
+      </div>
+      <figure class="call rv">
+        <img src="img/call.jpg" width="1112" height="1400" alt="Julie laughing on a video call with a fellow designer">
+        <div class="cursor" aria-hidden="true">
+          <svg class="pxcur" xmlns="http://www.w3.org/2000/svg" width="24" height="38" viewBox="0 0 24 38" shape-rendering="crispEdges"><rect x="0" y="0" width="2" height="2" fill="#ffffff"/><rect x="0" y="2" width="2" height="2" fill="#ffffff"/><rect x="2" y="2" width="2" height="2" fill="#ffffff"/><rect x="0" y="4" width="2" height="2" fill="#ffffff"/><rect x="2" y="4" width="2" height="2" fill="#1868db"/><rect x="4" y="4" width="2" height="2" fill="#ffffff"/><rect x="0" y="6" width="2" height="2" fill="#ffffff"/><rect x="2" y="6" width="2" height="2" fill="#1868db"/><rect x="4" y="6" width="2" height="2" fill="#1868db"/><rect x="6" y="6" width="2" height="2" fill="#ffffff"/><rect x="0" y="8" width="2" height="2" fill="#ffffff"/><rect x="2" y="8" width="2" height="2" fill="#1868db"/><rect x="4" y="8" width="2" height="2" fill="#1868db"/><rect x="6" y="8" width="2" height="2" fill="#1868db"/><rect x="8" y="8" width="2" height="2" fill="#ffffff"/><rect x="0" y="10" width="2" height="2" fill="#ffffff"/><rect x="2" y="10" width="2" height="2" fill="#1868db"/><rect x="4" y="10" width="2" height="2" fill="#1868db"/><rect x="6" y="10" width="2" height="2" fill="#1868db"/><rect x="8" y="10" width="2" height="2" fill="#1868db"/><rect x="10" y="10" width="2" height="2" fill="#ffffff"/><rect x="0" y="12" width="2" height="2" fill="#ffffff"/><rect x="2" y="12" width="2" height="2" fill="#1868db"/><rect x="4" y="12" width="2" height="2" fill="#1868db"/><rect x="6" y="12" width="2" height="2" fill="#1868db"/><rect x="8" y="12" width="2" height="2" fill="#1868db"/><rect x="10" y="12" width="2" height="2" fill="#1868db"/><rect x="12" y="12" width="2" height="2" fill="#ffffff"/><rect x="0" y="14" width="2" height="2" fill="#ffffff"/><rect x="2" y="14" width="2" height="2" fill="#1868db"/><rect x="4" y="14" width="2" height="2" fill="#1868db"/><rect x="6" y="14" width="2" height="2" fill="#1868db"/><rect x="8" y="14" width="2" height="2" fill="#1868db"/><rect x="10" y="14" width="2" height="2" fill="#1868db"/><rect x="12" y="14" width="2" height="2" fill="#1868db"/><rect x="14" y="14" width="2" height="2" fill="#ffffff"/><rect x="0" y="16" width="2" height="2" fill="#ffffff"/><rect x="2" y="16" width="2" height="2" fill="#1868db"/><rect x="4" y="16" width="2" height="2" fill="#1868db"/><rect x="6" y="16" width="2" height="2" fill="#1868db"/><rect x="8" y="16" width="2" height="2" fill="#1868db"/><rect x="10" y="16" width="2" height="2" fill="#1868db"/><rect x="12" y="16" width="2" height="2" fill="#1868db"/><rect x="14" y="16" width="2" height="2" fill="#1868db"/><rect x="16" y="16" width="2" height="2" fill="#ffffff"/><rect x="0" y="18" width="2" height="2" fill="#ffffff"/><rect x="2" y="18" width="2" height="2" fill="#1868db"/><rect x="4" y="18" width="2" height="2" fill="#1868db"/><rect x="6" y="18" width="2" height="2" fill="#1868db"/><rect x="8" y="18" width="2" height="2" fill="#1868db"/><rect x="10" y="18" width="2" height="2" fill="#1868db"/><rect x="12" y="18" width="2" height="2" fill="#1868db"/><rect x="14" y="18" width="2" height="2" fill="#1868db"/><rect x="16" y="18" width="2" height="2" fill="#1868db"/><rect x="18" y="18" width="2" height="2" fill="#ffffff"/><rect x="0" y="20" width="2" height="2" fill="#ffffff"/><rect x="2" y="20" width="2" height="2" fill="#1868db"/><rect x="4" y="20" width="2" height="2" fill="#1868db"/><rect x="6" y="20" width="2" height="2" fill="#1868db"/><rect x="8" y="20" width="2" height="2" fill="#1868db"/><rect x="10" y="20" width="2" height="2" fill="#1868db"/><rect x="12" y="20" width="2" height="2" fill="#1868db"/><rect x="14" y="20" width="2" height="2" fill="#1868db"/><rect x="16" y="20" width="2" height="2" fill="#1868db"/><rect x="18" y="20" width="2" height="2" fill="#1868db"/><rect x="20" y="20" width="2" height="2" fill="#ffffff"/><rect x="0" y="22" width="2" height="2" fill="#ffffff"/><rect x="2" y="22" width="2" height="2" fill="#1868db"/><rect x="4" y="22" width="2" height="2" fill="#1868db"/><rect x="6" y="22" width="2" height="2" fill="#1868db"/><rect x="8" y="22" width="2" height="2" fill="#1868db"/><rect x="10" y="22" width="2" height="2" fill="#1868db"/><rect x="12" y="22" width="2" height="2" fill="#1868db"/><rect x="14" y="22" width="2" height="2" fill="#ffffff"/><rect x="16" y="22" width="2" height="2" fill="#ffffff"/><rect x="18" y="22" width="2" height="2" fill="#ffffff"/><rect x="20" y="22" width="2" height="2" fill="#ffffff"/><rect x="22" y="22" width="2" height="2" fill="#ffffff"/><rect x="0" y="24" width="2" height="2" fill="#ffffff"/><rect x="2" y="24" width="2" height="2" fill="#1868db"/><rect x="4" y="24" width="2" height="2" fill="#1868db"/><rect x="6" y="24" width="2" height="2" fill="#1868db"/><rect x="8" y="24" width="2" height="2" fill="#ffffff"/><rect x="10" y="24" width="2" height="2" fill="#1868db"/><rect x="12" y="24" width="2" height="2" fill="#1868db"/><rect x="14" y="24" width="2" height="2" fill="#ffffff"/><rect x="0" y="26" width="2" height="2" fill="#ffffff"/><rect x="2" y="26" width="2" height="2" fill="#1868db"/><rect x="4" y="26" width="2" height="2" fill="#1868db"/><rect x="6" y="26" width="2" height="2" fill="#ffffff"/><rect x="10" y="26" width="2" height="2" fill="#ffffff"/><rect x="12" y="26" width="2" height="2" fill="#1868db"/><rect x="14" y="26" width="2" height="2" fill="#1868db"/><rect x="16" y="26" width="2" height="2" fill="#ffffff"/><rect x="0" y="28" width="2" height="2" fill="#ffffff"/><rect x="2" y="28" width="2" height="2" fill="#1868db"/><rect x="4" y="28" width="2" height="2" fill="#ffffff"/><rect x="10" y="28" width="2" height="2" fill="#ffffff"/><rect x="12" y="28" width="2" height="2" fill="#1868db"/><rect x="14" y="28" width="2" height="2" fill="#1868db"/><rect x="16" y="28" width="2" height="2" fill="#ffffff"/><rect x="0" y="30" width="2" height="2" fill="#ffffff"/><rect x="2" y="30" width="2" height="2" fill="#ffffff"/><rect x="12" y="30" width="2" height="2" fill="#ffffff"/><rect x="14" y="30" width="2" height="2" fill="#1868db"/><rect x="16" y="30" width="2" height="2" fill="#1868db"/><rect x="18" y="30" width="2" height="2" fill="#ffffff"/><rect x="0" y="32" width="2" height="2" fill="#ffffff"/><rect x="12" y="32" width="2" height="2" fill="#ffffff"/><rect x="14" y="32" width="2" height="2" fill="#1868db"/><rect x="16" y="32" width="2" height="2" fill="#1868db"/><rect x="18" y="32" width="2" height="2" fill="#ffffff"/><rect x="14" y="34" width="2" height="2" fill="#ffffff"/><rect x="16" y="34" width="2" height="2" fill="#1868db"/><rect x="18" y="34" width="2" height="2" fill="#1868db"/><rect x="20" y="34" width="2" height="2" fill="#ffffff"/><rect x="14" y="36" width="2" height="2" fill="#ffffff"/><rect x="16" y="36" width="2" height="2" fill="#ffffff"/><rect x="18" y="36" width="2" height="2" fill="#ffffff"/></svg>
+          <span>Julie</span>
+        </div>
+      </figure>
+    </div>
+    <div class="gap"></div>
+    <p class="jtc" data-role="lead">I've owned a surface 3 billion people use, across web and native.</p>
+    <p class="jtc" data-role="body">Almost five years at Meta as a principal product designer. I owned Facebook Comments across iOS, Android, web, mobile web and FB Lite, and built the Visual Asset Framework, a design system 300+ designers adopted. I prototype in Claude Code, Cursor and SwiftUI.</p>
+    <div class="links rv"><a class="btn" href="https://www.julietorrisi.com/home/modernizing-facebooks-comment-experience" target="_blank" rel="noopener">View Comments work <span class="arr">↗</span></a><span class="pwbox">Password: <code class="pwtext">3BillionPeople</code><button class="copy" type="button" data-copy="3BillionPeople" aria-label="Copy password">Copy</button></span></div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> Who is Julie?</p>
+    <p class="jtc" data-role="h2">A native New Yorker, now in <em>Apex,</em> NC.</p>
+    <div class="who">
+      <div>
+        <p class="jtc" data-role="body">Creating anything is my happy place. Lately that's journaling in my Hobonichi Techo, needlepoint, crochet, and shooting on my Sony a6000 (most of these photos). Travel is a good reminder to find joy in daily rituals.</p>
+        <ul class="likes rv">
+          <li><b>Tuscany sabbatical</b><span>June in Spain and Switzerland. July in Tuscany for a 10-year anniversary with my partner Anthony, a chef, and our two kids, Cara and Jack. A social media detox and an intentional break from work.</span></li>
+          <li><b>Food and travel</b><span>The history is in the food. Tuscan bread has no salt because of a medieval salt tax, and the recipe outlived it.</span></li>
+          <li><b>Crafting joy</b><span>From paper goods to jewelry, finding beauty in small-batch makers and supporting local artists.</span></li>
+          <li><b>Dopamine nail art</b><span>Bright, vibrant and fun. I keep a whole Pinterest board just for this.</span></li>
+        </ul>
+      </div>
+      <div class="bento">
+        <figure class="rv b-st"><img src="img/stationery.jpg" width="384" height="512" alt="Hobonichi Techo planner and Japanese stationery on a picnic blanket"><figcaption>Hobonichi Techo + Japanese stationery</figcaption></figure>
+        <figure class="rv b-co"><video poster="img/costa-brava.jpg" width="540" height="906" autoplay muted loop playsinline preload="auto" aria-label="View of the sea from a boat off the Costa Brava"><source src="media/costa-brava.mp4" type="video/mp4"><source src="media/costa-brava.webm" type="video/webm"></video><figcaption>Off the coast of Costa Brava, June 2026</figcaption></figure>
+        <figure class="rv b-to"><img src="img/tossa.jpg" width="1069" height="1600" alt="A child in a sun hat looking down at a crowded beach"><figcaption>Tossa de Mar, Costa Brava, Spain</figcaption></figure>
+        <figure class="rv b-he"><img src="img/henry.jpg" width="750" height="731" alt="Julie hugging her dog Henry outdoors"><figcaption>Henry, my firstborn son</figcaption></figure>
+        <figure class="rv b-pi"><img src="img/pistoia.jpg" width="1600" height="1069" alt="Cara and Jack holding hands in a park"><figcaption>Cara &amp; Jack, Pistoia, July 2026</figcaption></figure>
+        <figure class="rv b-ca"><img src="img/capezzana.jpg" width="270" height="404" alt="Two wine glasses on a terrace overlooking Tuscan hills"><figcaption>Capezzana, Carmignano, July 2026</figcaption></figure>
+        <figure class="rv b-pa"><video poster="img/tuscany-pasta.jpg" width="540" height="906" autoplay muted loop playsinline preload="auto" aria-label="A summer in Italy: a child eating pasta, cafes and family moments"><source src="media/tuscany-pasta.mp4" type="video/mp4"><source src="media/tuscany-pasta.webm" type="video/webm"></video><figcaption>Tuscany, July 2026</figcaption></figure>
+        <figure class="rv b-bi"><img src="img/birdie.jpg" width="308" height="190" alt="Birdie the dog sitting on a staircase"><figcaption>Birdie, my wild southern belle</figcaption></figure>
+        <figure class="rv b-pr"><img src="img/paris.jpg" width="1616" height="550" alt="Cara and Jack smiling on a rope climbing frame"><figcaption>Cara &amp; Jack, Paris, July 2026</figcaption></figure>
+      </div>
+    </div>
+    <div class="gap"></div>
+    <p class="jtc" data-role="kicker">> Okay, enough about me. Here are 8 things that map to what Atlassian is building.</p>
+  </div>
+</section>
+
+<!-- 01 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 01 · Facebook brand refresh, in product</p>
+    <p class="jtc" data-role="h2">Standards other senior designers <em>follow.</em></p>
+    <p class="jtc" data-role="body">Facebook's brand refresh needed one standard for 300+ designers. I made the case for the Visual Asset Framework, ran it like a product and got it funded. Other teams adopted it.</p>
+    <div class="cards">
+      <div class="stat rv"><p class="jtc" data-role="num">300+</p><p>designers adopted it</p></div>
+      <div class="stat rv"><p class="jtc" data-role="num">78%</p><p>faster from design to engineering</p></div>
+      <div class="stat rv"><p class="jtc" data-role="num">$1.2M</p><p>saved every year</p></div>
+    </div>
+    <p class="jtc" data-role="kicker">> For Atlassian: one AI design language across Jira, Confluence and Rovo only works if every team ships it.</p>
+    <div class="links rv"><a class="btn" href="https://www.julietorrisi.com/home/architecting-facebooks-brand-refresh-inproduct" target="_blank" rel="noopener">View work <span class="arr">↗</span></a><span class="pwbox">Password: <code class="pwtext">3BillionPeople</code><button class="copy" type="button" data-copy="3BillionPeople" aria-label="Copy password">Copy</button></span></div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 02 · Tokenized visual assets</p>
+    <p class="jtc" data-role="h2">Prototypes on real tokens, so engineering <em>builds</em> what you designed.</p>
+    <div class="cards two">
+      <div class="card rv"><span class="ico" data-icon="close"></span><h3>The usual way</h3><p>Illustrations, photos and motion sit in an asset library. It drifts, design debt piles up, and everyone pretends not to notice.</p></div>
+      <div class="card hi rv"><span class="ico" data-icon="check" data-color="ink"></span><h3>What I built</h3><p>Design systems usually stop at color and type. I pushed ours further, so illustrations, photos and motion became tokens too. Each one is named for exactly where it's used, with strict naming rules. Engineers can maintain it, and people and AI can both read it.</p></div>
+    </div>
+    <div class="bignum">
+      <p class="jtc" data-role="num" data-big="1" style="width:auto;min-width:0">160 → <em>10</em></p>
+      <p class="cap rv">Empty states pilot: 160 variants down to 10 solutions, covering 88% of use cases.</p>
+    </div>
+    <p class="jtc" data-role="kicker">> For Atlassian: Rovo prototypes on real Atlassian Design System tokens, so what we test is what ships.</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 03 · Bridge Bank · Goldman Sachs Private Wealth Management</p>
+    <p class="jtc" data-role="h2">Show people only what they need to <em>act.</em></p>
+    <p class="jtc" data-role="lead">One question I bring to every product: how much information does someone need to take action?</p>
+    <p class="jtc" data-role="body">At Goldman Sachs, that meant trust, joint, business, loan and credit accounts, on a phone, for advisors and their clients. The hard part wasn't fitting it all in. It was deciding what people actually need to make a decision, and leaving the rest out.</p>
+    <div class="cards">
+      <div class="card rv"><span class="ico" data-icon="user"></span><h3>Follow what people do</h3><p>Usage showed four main paths: accounts, transactions, documents, messages. So that's the IA.</p></div>
+      <div class="card hi rv"><span class="ico" data-icon="minus" data-color="ink"></span><h3>Say no to most of it</h3><p>The app gives a light, action-first overview. Deep analysis lives with support teams. Cutting was by design.</p></div>
+      <div class="card rv"><span class="ico" data-icon="grid"></span><h3>Four views, that's it</h3><p>A total-of-all-accounts graph, money in and out, loans, and asset allocation.</p></div>
+      <div class="card rv"><span class="ico" data-icon="edit"></span><h3>Built the system too</h3><p>Identity, color, type, icons and motion. Softer shapes, because money is stressful enough.</p></div>
+      <div class="card span2 rv"><span class="ico" data-icon="search"></span><h3>Tested before shipping</h3><p>Prototypes at every fidelity, tested for comprehension and hierarchy.</p></div>
+    </div>
+    <p class="jtc" data-role="kicker">> For Atlassian: someone asking Rovo a question mid-sprint needs the answer and the next action, not a wall of text.</p>
+    <div class="links rv"><a class="btn" href="https://julietorrisi.com/home/bridge-bank" target="_blank" rel="noopener">View work <span class="arr">↗</span></a></div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 04 · Attention and AI</p>
+    <p class="jtc" data-role="h2">Agents only help if teams <em>trust</em> them.</p>
+    <p class="jtc" data-role="body">I wrote the Attention Signaling Playbook for Facebook's 16 billion daily notifications. The same idea runs through all my AI work: AI suggests, people decide.</p>
+    <div class="cards">
+      <div class="card hi rv"><span class="ico" data-icon="sparkle" data-color="ink"></span><h3>AI you choose to open</h3><p>At Meta I argued AI in comments should be something you open on purpose, inside the job you came to do. Leadership adopted it as a trust principle.</p></div>
+      <div class="card rv"><span class="ico" data-icon="bell"></span><h3>Cadence</h3><p>My current build: a prototype that decides when AI can handle something alone and when a person needs to step in.</p></div>
+      <div class="card rv"><span class="ico" data-icon="bolt"></span><h3>Prototyping on live data</h3><p>Led design of an Xcode sandbox that let any discipline test ideas on live data with one line of code.</p></div>
+    </div>
+    <figure class="figure rv">
+      <img src="img/playbook.gif" width="1798" height="1004" fetchpriority="high" decoding="async" alt="Two pages from the Attention Signaling Playbook: Facebook has a wide range of communications we need and want to share; and the vision statement.">
+      <figcaption class="label">From the Attention Signaling Playbook</figcaption>
+    </figure>
+    <p class="jtc" data-role="kicker">> For Atlassian: Rovo should show which page or ticket an answer came from, and make it easy to say no.</p>
+    <div class="links rv"><a class="btn" href="https://cadence-ai-workflow.netlify.app" target="_blank" rel="noopener">View Cadence <span class="arr">↗</span></a></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 05 · From the attention signaling logic</p>
+    <p class="jtc" data-role="h2">Don't <em>interrupt</em> people unless you have to.</p>
+    <div class="split">
+      <div>
+        <p class="jtc" data-role="body">The loud surfaces are for urgent, relevant messages. Interrupt someone mid-task and they don't finish the job they came to do.</p>
+        <p class="jtc" data-role="body">We also capped impressions, so nobody saw the same message on repeat. That's how you avoid message blindness and keep people liking the brand.</p>
+      </div>
+      <div class="rightcol">
+        <div class="ladder rv" data-chart="ladder">
+          <h3>Pick the right surface</h3>
+          <p class="label end">↑ More disruptive</p>
+          <div class="rungs"></div>
+          <p class="label end">↓ Less disruptive</p>
+        </div>
+        <div class="order rv">
+          <h3>Who gets to interrupt, in order</h3>
+          <ol><li>Errors and warnings</li><li>Trust, safety and policy</li><li>Deprecations and changes</li><li>Product and feature announcements</li><li>Onboarding reminders</li><li>Incentives and promotions</li><li>Best practices</li><li>Education and guidance</li><li>Status updates</li><li>Activity</li><li>Milestones and recognition</li></ol>
+        </div>
+      </div>
+    </div>
+    <div class="gap"></div>
+    <p class="jtc" data-role="kicker">> For Atlassian: a broken deploy earns a push. An agent suggestion waits inside the ticket.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 06 · What I'd bring to Rovo</p>
+    <p class="jtc" data-role="h2">From seats to daily <em>habit.</em></p>
+    <p class="jtc" data-role="body">Rovo now comes with every paid cloud plan, and use past the included credits is billed. So revenue follows real, repeat use, not provisioned seats. Here's where my work fits that path.</p>
+    <ol class="steps">
+      <li class="step rv"><span class="ico" data-icon="search"></span><div><span class="k">Discover</span><h3>Show up inside the work</h3><p>Rovo at the moment someone needs it in Jira and Confluence, not as a place they have to remember to visit.</p></div><p class="proof">Proof: Facebook Comments shipped as one experience on iOS, Android, web, mobile web and FB Lite, for about 3 billion people.</p></li>
+      <li class="step hi rv"><span class="ico" data-icon="check" data-color="ink"></span><div><span class="k">Trust</span><h3>Answers with receipts</h3><p>Every answer links to its source, and every agent action can be checked and undone.</p></div><p class="proof">Proof: At Meta I made AI something people click into on purpose, not something switched on across every surface. Leadership adopted it as a trust principle. Cadence decides when AI acts and when a person steps in.</p></li>
+      <li class="step rv"><span class="ico" data-icon="bell"></span><div><span class="k">Habit</span><h3>The right nudge, once</h3><p>Suggest an agent when it would save real time, on the right surface, and capped so the next one still gets read.</p></div><p class="proof">Proof: the Attention Signaling Playbook for 16 billion daily notifications.</p></li>
+      <li class="step rv"><span class="ico" data-icon="bolt"></span><div><span class="k">Build</span><h3>Agents teams make themselves</h3><p>Make it easy for any team to try an agent on their own work before they commit to it.</p></div><p class="proof">Proof: led design of an Xcode sandbox that let any discipline test ideas on live data with one line of code.</p></li>
+      <li class="step rv"><span class="ico" data-icon="grid"></span><div><span class="k">Scale</span><h3>One AI design language</h3><p>Patterns every product team can pick up, so AI feels like one Atlassian, not a dozen experiments.</p></div><p class="proof">Proof: the Visual Asset Framework, adopted by 300+ designers inside their Figma design kits. 78% faster from design to engineering.</p></li>
+    </ol>
+    <p class="jtc" data-role="kicker">> For Atlassian: I'd prototype Rovo flows on a real team's Jira and Confluence data before engineering commits.</p>
+  </div>
+</section>
+
+<!-- 07 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 07 · Executive escalations at Meta</p>
+    <p class="jtc" data-role="h2">Any challenge. <em>Stabilized,</em> then handed off.</p>
+    <p class="jtc" data-role="lead">On top of leading the Comments redesign, I took on 3 executive escalations, one after another.</p>
+    <p class="jtc" data-role="body">Each one was in a part of the app I didn't own, with no authority over its designers. I found common ground to build from, got the work back on track, then handed it to another designer and went back to running my program on Comments.</p>
+    <div class="cards">
+      <div class="card rv"><span class="ico" data-icon="alert"></span><h3>Stabilize the workstream</h3><p>Find the common ground between teams who don't report to you, and get everyone moving in one direction again.</p></div>
+      <div class="card rv"><span class="ico" data-icon="grid"></span><h3>Build the foundation</h3><p>Set up the design foundation and a milestone roadmap the team can run without me.</p></div>
+      <div class="card hi rv"><span class="ico" data-icon="arrow-right" data-color="ink"></span><h3>Hand it off, go back</h3><p>Hand the work to another designer, then back to running my program on Comments.</p></div>
+    </div>
+    <div class="cards two">
+      <div class="stat rv"><p class="jtc" data-role="num">3</p><p>executive escalations, run alongside my own program</p></div>
+      <div class="stat rv"><p class="jtc" data-role="num">5</p><p>manager changes, with one clear plan the whole way through</p></div>
+    </div>
+    <div class="gap"></div>
+    <p class="jtc" data-role="h2">Roadmaps that decide where to build <em>next.</em></p>
+    <p class="jtc" data-role="body">My roadmaps have go/no-go milestones. Each build teaches us something for the next one and shows which direction to build in. That's how you lay a foundation a product can change quickly on top of.</p>
+    <p class="jtc" data-role="kicker">> For Atlassian: Rovo touches every product team. I've aligned leaders who didn't report to me on one direction.</p>
+  </div>
+</section>
+
+<!-- 08 -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> 08 · How I work</p>
+    <p class="jtc" data-role="h2">Hands-on. Leading through <em>influence.</em></p>
+    <p class="jtc" data-role="lead">I lead by example. Designers follow a designer whose craft proves their level, so respect gets earned by the work.</p>
+    <p class="jtc" data-role="body">I'm a natural culture builder and a glass-half-full optimist. I don't start with the constraints that stop us. I start with what we can do.</p>
+    <div class="cards">
+      <div class="card rv"><span class="ico" data-icon="star"></span><h3>Brand person, product brain</h3><p>Nine years in brand and digital marketing (R/GA, LBi, Profero). I get brand designers, and I bring them along on what live-product assets actually need.</p></div>
+      <div class="card rv"><span class="ico" data-icon="user"></span><h3>Context, not control</h3><p>Senior designers get real scope and a clear path. I set the bar and give candid feedback in the moment. I don't compete with them for the work.</p></div>
+      <div class="card rv"><span class="ico" data-icon="mail"></span><h3>Peers sent me their work</h3><p>Other design directors at Meta sent their designers to me for review before shipping. That's what a trusted partner looks like.</p></div>
+      <div class="card rv"><span class="ico" data-icon="clock"></span><h3>Meetings earn their spot</h3><p>Sprints, retros, crits and roadmaps with clear go/no-go calls. Decisions get written down so they travel without me. Useless meeting? We kill it.</p></div>
+      <div class="card rv"><span class="ico" data-icon="activity"></span><h3>Leading through change</h3><p>Managed 4 and directed 15 designers across 9 teams at Meta, through 5 manager changes. A clear plan kept us moving.</p></div>
+      <div class="card hi rv"><span class="ico" data-icon="external" data-color="ink"></span><h3>See the work</h3><p><a href="https://www.julietorrisi.com/home/modernizing-facebooks-comment-experience" target="_blank" rel="noopener">Facebook Comments redesign</a><br><a href="https://www.julietorrisi.com/home/architecting-facebooks-brand-refresh-inproduct" target="_blank" rel="noopener">Facebook brand refresh in product</a><br><span class="pwbox in-card">Password: <code class="pwtext">3BillionPeople</code><button class="copy" type="button" data-copy="3BillionPeople" aria-label="Copy password">Copy</button></span><br><a href="https://julietorrisi.com/home/bridge-bank" target="_blank" rel="noopener">Bridge Bank</a><br><a href="https://cadence-ai-workflow.netlify.app" target="_blank" rel="noopener">Cadence</a></p></div>
+    </div>
+    <div class="gap"></div>
+    <p class="jtc" data-role="kicker">> For Atlassian: I'd run crits and AI workshops in the open, so designers across Jira and Confluence build on the same patterns.</p>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="kicker">> Testimonials from partners</p>
+    <div class="tcar rv" role="region" aria-roledescription="carousel" aria-label="Testimonials from partners">
+     <div class="tview"><div class="ttrack" aria-live="polite">
+      <blockquote><p>“Thanks for the leadership, collaboration and knowledgeable input tailoring the Visual Asset Framework. The nomenclature, definitions and overall work will prove to help so many future conversations and allow faster alignment on all workstreams.”</p><footer class="label"><b>Design director, Design Shop</b></footer></blockquote>
+      <blockquote><p>“Thanks for being an inclusive partner on the [Visual Asset Framework] and Glow-Up project and listening to [our] POV on the FLEX glossary. Our team felt seen and heard, and we appreciate you.”</p><footer class="label"><b>Design director, Design Shop</b></footer></blockquote>
+      <blockquote><p>“You are truly a Figma queen. Your efforts in educating our new hires on both the basics and advanced features of Figma will undoubtedly set them up for success.”</p><footer class="label"><b>Director, Design Shop</b></footer></blockquote>
+      <blockquote><p>“Your ability to navigate through ambiguity and drive meaningful conversations with both internal teams and XFN partners has been instrumental in our progress.”</p><footer class="label"><b>Design manager, Iconography</b></footer></blockquote>
+      <blockquote><p>“I AM SO EXCITED by this effort. It's literally bringing clarity to a question I've asked myself for years.”</p><footer class="label"><b>Design manager, Brand</b></footer></blockquote>
+      <blockquote><p>“Thank you for being the conductor driving this train forward. All aboard the Visual Asset Framework train.”</p><footer class="label"><b>Design manager, Brand</b></footer></blockquote>
+      <blockquote><p>“Thanks for treating me like a product designer. The past few weeks working with you on strategic solutions and embracing ambiguity has given me a huge confidence boost and helped me feel validated in my career transition goals.”</p><footer class="label"><b>Visual designer, Design Shop</b></footer></blockquote>
+      <blockquote><p>“Thanks so much for locating and sharing so many surface audits this half. Your efforts and time saved our team a ton of work and unblocked us so we could pursue explorations in a timely manner.”</p><footer class="label"><b>Animator, Design Shop</b></footer></blockquote>
+      <blockquote><p>“Thank you for putting together such an amazing workshop for Figma! I learned so so much, this is really going to help speed up my process.”</p><footer class="label"><b>Illustrator, Design Shop</b></footer></blockquote>
+     </div></div>
+     <div class="tnav">
+      <button class="tarrow" type="button" data-dir="-1" aria-label="Previous testimonial">←</button>
+      <div class="tdots"></div>
+      <button class="tarrow" type="button" data-dir="1" aria-label="Next testimonial">→</button>
+     </div>
+    </div>
+  </div>
+</section>
+<script>
+document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
+  const text = b.dataset.copy, done = () => { b.textContent = 'Copied'; setTimeout(() => { b.textContent = 'Copy'; }, 1600); };
+  const pick = () => { const c = b.previousElementSibling; const r = document.createRange(); r.selectNodeContents(c); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected, press Copy'; setTimeout(() => { b.textContent = 'Copy'; }, 2200); };
+  try { navigator.clipboard.writeText(text).then(done, pick); } catch (e) { pick(); }
+}));
+</script>
+<script>
+document.querySelectorAll('video').forEach(v => { v.muted = true; const p = v.play(); if (p) p.catch(() => {}); });
+</script>
+<script>
+(function(){
+  const car = document.querySelector('.tcar'); if (!car) return;
+  const track = car.querySelector('.ttrack'), slides = [...track.children], dots = car.querySelector('.tdots');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0, timer = null, paused = false;
+  slides.forEach((s, k) => {
+    s.setAttribute('aria-roledescription', 'slide'); s.setAttribute('aria-label', `${k + 1} of ${slides.length}`);
+    const d = document.createElement('button'); d.type = 'button'; d.className = 'tdot';
+    d.setAttribute('aria-label', `Show testimonial ${k + 1}`); d.addEventListener('click', () => { go(k); restart(); });
+    dots.append(d);
+  });
+  function go(k){
+    i = (k + slides.length) % slides.length;
+    track.style.transform = `translateX(${-100 * i}%)`;
+    slides.forEach((s, n) => s.toggleAttribute('inert', n !== i));
+    [...dots.children].forEach((d, n) => d.setAttribute('aria-current', n === i ? 'true' : 'false'));
+  }
+  function restart(){ clearInterval(timer); if (!reduced && !paused) timer = setInterval(() => go(i + 1), 6000); }
+  car.querySelectorAll('.tarrow').forEach(b => b.addEventListener('click', () => { go(i + Number(b.dataset.dir)); restart(); }));
+  car.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); });
+  car.addEventListener('mouseleave', () => { paused = false; restart(); });
+  car.addEventListener('focusin', () => { paused = true; clearInterval(timer); });
+  car.addEventListener('focusout', e => { if (!car.contains(e.relatedTarget)) { paused = false; restart(); } });
+  car.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { go(i - 1); restart(); } if (e.key === 'ArrowRight') { go(i + 1); restart(); } });
+  go(0); restart();
+})();
+</script>
+
+<!-- CLOSE -->
+<section>
+  <div class="wrap">
+    <p class="jtc" data-role="h2">Thank <em>you.</em></p>
+    <p class="jtc" data-role="body">I'd love to talk about where Rovo goes next.</p>
+    <div class="links rv">
+      <a class="btn" href="https://www.linkedin.com/in/julietorrisi/" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
+      <a class="btn" href="https://julietorrisi.com" target="_blank" rel="noopener">julietorrisi.com <span class="arr">↗</span></a>
+      <a class="btn" href="https://julietorrisi.com/home/design-ai" target="_blank" rel="noopener">How I use AI <span class="arr">↗</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const GLYPHS = {"0":"4ahhha400","1":"4ck444v00","2":"eh168gv00","3":"v1261he00","4":"26aiv2200","5":"vgmp1he00","6":"68gmphe00","7":"v12248800","8":"ehhehhe00","9":"ehjd12c00"," ":"000000000","!":"444440400","\"":"aaa000000","#":"aavavaa00","$":"4eke5e400","%":"9la4ali00","&":"8kk8lid00","'":"444000000","(":"248884200",")":"842224800","*":"0havah000","+":"044v44000",",":"00000c480","-":"000v00000",".":"00000cc00","/":"11248gg00",":":"0cc00cc00",";":"0cc00c480","<":"124842100","=":"00v0v0000",">":"842124800","?":"eh2440400","@":"ehjlmge00","A":"4ahhvhh00","B":"u99e99u00","C":"ehggghe00","D":"u99999u00","E":"vgguggv00","F":"vgguggg00","G":"ehggjhe00","H":"hhhvhhh00","I":"e44444e00","J":"72222ic00","K":"hikokih00","L":"ggggggv00","M":"hhrlhhh00","N":"hhpljhh00","O":"ehhhhhe00","P":"uhhuggg00","Q":"ehhhhle10","R":"uhhukih00","S":"ehge1he00","T":"v44444400","U":"hhhhhhe00","V":"hhhaaa400","W":"hhhllrh00","X":"hha4ahh00","Y":"hha444400","Z":"v1248gv00","[":"e88888e00","\\":"gg8421100","]":"e22222e00","^":"4ah000000","_":"0000000v0","a":"00e1fhf00","b":"ggmphpm00","c":"00ehghe00","d":"11djhjd00","e":"00ehvge00","f":"698u88800","g":"00fhhf1he","h":"ggmphhh00","i":"40c444e00","j":"103111996","k":"gghisih00","l":"c44444e00","m":"00qlllh00","n":"00mphhh00","o":"00ehhhe00","p":"00mphpmgg","q":"00djhjd11","r":"00mpggg00","s":"00ege1u00","t":"88u889600","u":"00hhhjd00","v":"00hhaa400","w":"00hhlla00","x":"00ha4ah00","y":"00hhjd1he","z":"00v248v00","{":"342c24300","|":"444444400","}":"c24342c00","~":"9li000000","’":"624000000","‘":"246000000","“":"9ir000000","”":"r9i000000","·":"000cc0000","•":"006ff6000","–":"000v00000","—":"000v00000","…":"000000l00","↑":"04c444400","↓":"044444400","×":"00ha4ah00","÷":"040v04000","°":"4a4000000","©":"ehlplhe00","®":"ehtpphe00","€":"69s8s9600","£":"698s89m00","→":"042v24000","←":"048v84000","`":"840000000","é":"24ehvge00"};
+const ICONS = {"star":"0000000000800080014001401e3c08080410022005d00630041000000000","mail":"0000000000003ffe10041c1c163411441084100410041ffc000000000000","bolt":"00000000004000c001400240043c08081e10012001400180010002000000","sparkle":"00000080008000800080014002203c1e0220014000800080008000800000","grid":"000039ce294a39ce0000000039ce294a39ce0000000039ce294a39ce0000","bell":"0000000003e004100808080808080808080808080ff8000001c000800000","home":"00000080014002200410080810040808080809c80a280a280a280e380000","close":"000000001004080804100220014000800140022004100808100400000000","alert":"0000008000800140022002a004900490088808881004108420023ffe0000","user":"000001c00220041004100410022001c0000007f00808100420023ffe0000","clock":"000003e00c18188c10842082208220f2200220021004180c0c1803e00000","edit":"000000000020005000a8011402080410082010402080210022003c000000","search":"000007801860102020102010201020101020186007900008000400020000","check":"00000000000000020004000800180030206010c008800500020000000000","minus":"00000000000000000000000000003ffe0000000000000000000000000000","arrow-right":"00000080004000200010000800043ffe0004000800100020004000800000","activity":"00000000000001000300028006803cce0058005000300020000000000000","external":"000001fe00063e0a2012202220422082200220082008200820083ff80000"};
+(function(){
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = getComputedStyle(document.documentElement);
+  const C = {ink:'#f7f8f8', grey:'#9da3a1', dim:'#30353a', signal:'#1868db', al:'#1558bc'};
+  const STEP = 78;
+  const POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const ROLES = {
+    hero:{s:3,upper:true,cyc:true,color:'ink',fit:'word'},
+    h2:{s:2,upper:true,cyc:true,color:'ink',fit:'word'},
+    num:{s:2,upper:true,cyc:true,color:'ink',fit:'line'},
+    lead:{s:1,upper:false,cyc:false,color:'ink'},
+    body:{s:1,upper:false,cyc:false,color:'grey'},
+    kicker:{s:1,upper:true,cyc:false,color:'grey'}
+  };
+  const pitch = () => innerWidth >= 1024 ? 5 : innerWidth >= 640 ? 4 : 3;
+  const glyphCache = {};
+  function glyph(ch){
+    if (glyphCache[ch]) return glyphCache[ch];
+    const s = GLYPHS[ch] ?? GLYPHS[ch.toUpperCase()] ?? GLYPHS['?'];
+    return glyphCache[ch] = [...s].map(d => parseInt(d, 32));
+  }
+  function iconRows(name){
+    const h = ICONS[name]; const rows = [];
+    for (let i = 0; i < 15; i++) rows.push(parseInt(h.substr(i*4, 4), 16));
+    return rows;
+  }
+
+  // ---------- text parsing ----------
+  function parse(el, upper){
+    const chars = [];
+    el.childNodes.forEach(n => {
+      const em = n.nodeType === 1 && n.tagName === 'EM';
+      let t = n.textContent.replace(/\s+/g, ' ');
+      t = t.replace(/[‘’]/g, "'");
+      if (upper) t = t.toUpperCase();
+      for (const ch of t) chars.push({ch, em});
+    });
+    while (chars.length && chars[0].ch === ' ') chars.shift();
+    while (chars.length && chars[chars.length-1].ch === ' ') chars.pop();
+    return chars;
+  }
+  function words(chars, hyphenBreak){
+    const out = []; let cur = [];
+    chars.forEach(c => {
+      if (c.ch === ' ') { if (cur.length) out.push(cur); cur = []; }
+      else { cur.push(c); if (hyphenBreak && c.ch === '-') { out.push(Object.assign(cur, {glue:true})); cur = []; } }
+    });
+    if (cur.length) out.push(cur);
+    return out;
+  }
+  // greedy wrap, then fix widows
+  function wrap(ws, max){
+    const lines = []; let line = [];
+    const len = l => l.reduce((a, w, i) => a + w.length + (i && !l[i-1].glue ? 1 : 0), 0);
+    ws.forEach(w => {
+      // hard-split any word longer than a line
+      while (w.length > max) { if (line.length) { lines.push(line); line = []; } lines.push([w.slice(0, max)]); w = w.slice(max); }
+      const test = line.concat([w]);
+      if (line.length && len(test) > max) { lines.push(line); line = [w]; } else line = test;
+    });
+    if (line.length) lines.push(line);
+    // no widows: never end with a single word alone
+    for (let k = lines.length - 1; k > 0; k--) {
+      const last = lines[k], prev = lines[k-1];
+      if (last.length === 1 && prev.length > 1) {
+        const moved = [prev[prev.length-1]].concat(last);
+        if (len(moved) <= max) { lines[k] = moved; lines[k-1] = prev.slice(0, -1); }
+      }
+    }
+    return lines.map(l => { const out = []; l.forEach((w, i) => { if (i && !l[i-1].glue) out.push({ch:' ', em:false}); out.push(...w); }); return out; });
+  }
+
+  // ---------- dot text elements ----------
+  const items = [];
+  document.querySelectorAll('.jtc').forEach(el => {
+    const role = ROLES[el.dataset.role] || ROLES.body;
+    const label = el.textContent.replace(/\s+/g, ' ').trim();
+    const chars = parse(el, role.upper);
+    el.textContent = '';
+    const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = label.replace(/^>\s*/, '');
+    const cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true');
+    el.append(sr, cv);
+    const seq = chars.map(c => {
+      const n = 6 + Math.floor(Math.random() * 7);
+      return Array.from({length:n}, () => POOL[Math.floor(Math.random() * POOL.length)]);
+    });
+    items.push({el, cv, role, chars, seq, start:null, done:reduced, type:'text', big:!!el.dataset.big});
+  });
+  document.querySelectorAll('.ico').forEach(el => {
+    const cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true'); el.append(cv);
+    items.push({el, cv, type:'icon', name:el.dataset.icon, color:el.dataset.color || 'signal', start:null, done:reduced});
+  });
+  // ladder chart
+  const LADDER = ['Push notification','Dialog','Feed megaphone','Activity feed notification','Profile megaphone','Profile floating banner','Tooltip','Onboarding and next steps','Tips and resources'];
+  document.querySelectorAll('[data-chart="ladder"] .rungs').forEach(box => {
+    LADDER.forEach((name, i) => {
+      const r = document.createElement('div'); r.className = 'rung'; r.tabIndex = 0;
+      r.setAttribute('aria-label', `${name}: ${i+1} of ${LADDER.length} on the disruption scale`);
+      const cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true');
+      const sp = document.createElement('span'); sp.textContent = name;
+      const tip = document.createElement('em'); tip.className = 'tip'; tip.textContent = `${i+1} OF ${LADDER.length}`; tip.setAttribute('aria-hidden','true');
+      r.append(cv, sp, tip); box.append(r);
+      items.push({el:r, cv, type:'bar', frac:(LADDER.length - i) / LADDER.length, rank:i, start:null, done:reduced});
+    });
+  });
+
+  // ---------- layout + draw ----------
+  function setup(it){
+    const P = pitch(); const dpr = Math.min(devicePixelRatio || 1, 2);
+    const rect = it.el.getBoundingClientRect();
+    const left = rect.left + scrollX, top = rect.top + scrollY;
+    it.P = P;
+    it.ox = ((P/2 - left) % P + P) % P; if (it.ox < P/2) it.ox += P;
+    it.oy = ((P/2 - top) % P + P) % P; if (it.oy < P/2) it.oy += P;
+    let w, h;
+    if (it.type === 'text') {
+      const avail = it.big ? Math.min(it.el.parentElement.getBoundingClientRect().width, 900) : rect.width;
+      const cols = Math.floor((avail - it.ox) / P);
+      let s = it.role.s;
+      const ws = words(it.chars, it.role.fit === 'word');
+      if (it.role.fit === 'word') {
+        const longest = Math.max(...ws.map(x => x.length));
+        while (s > 1 && longest * 6 * s - s > cols) s--;
+      } else if (it.role.fit === 'line') {
+        const big = it.big ? 3 : s; s = big;
+        while (s > 1 && it.chars.length * 6 * s - s > cols) s--;
+      }
+      const max = Math.max(1, Math.floor((cols + s) / (6 * s)));
+      it.s = s;
+      it.lines = it.role.fit === 'line' ? [it.chars] : wrap(ws, max);
+      // index map for animation order
+      let k = 0; it.map = it.lines.map(l => l.map(c => ({c, i: c.ch === ' ' ? -1 : k++})));
+      it.count = k;
+      const leadRows = s === 1 ? 11 : 10 * s;
+      const widest = Math.max(...it.lines.map(l => l.length));
+      w = it.big ? Math.min(Math.floor(avail), Math.ceil(it.ox + (widest * 6 * s - s) * P + P)) : rect.width;
+      h = Math.ceil(it.oy + ((it.lines.length - 1) * leadRows + 9 * s) * P + P);
+      it.leadRows = leadRows;
+      if (it.big) it.el.style.width = w + 'px';
+    } else if (it.type === 'icon') {
+      w = Math.ceil(it.ox + 15 * P + P); h = Math.ceil(it.oy + 15 * P + P);
+      it.el.style.width = w + 'px'; it.el.style.height = h + 'px';
+    } else {
+      w = rect.width ? Math.floor(it.ox + 26 * P + P) : 0; h = Math.ceil(it.oy + 3 * P + P);
+      it.cols = 26;
+    }
+    it.w = w; it.h = h;
+    it.cv.width = Math.round(w * dpr); it.cv.height = Math.round(h * dpr);
+    it.cv.style.width = w + 'px'; it.cv.style.height = h + 'px';
+    it.ctx = it.cv.getContext('2d'); it.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw(it, it.done ? Infinity : (it.start == null ? -1 : performance.now() - it.start));
+  }
+  function dot(ctx, x, y, P){ ctx.beginPath(); ctx.arc(x, y, Math.max(0.9, P * 0.4), 0, Math.PI * 2); ctx.fill(); }
+
+  function draw(it, t){
+    const {ctx, P} = it; ctx.clearRect(0, 0, it.w, it.h);
+    if (t < 0) return true;
+    let busy = false;
+    if (it.type === 'text') {
+      const s = it.s, cyc = it.role.cyc && !reduced;
+      const per = Math.min(16, 1100 / Math.max(1, it.count));
+      it.map.forEach((line, li) => line.forEach((cell, ci) => {
+        if (cell.i < 0) return;
+        let ch = cell.c.ch;
+        if (cyc) {
+          const local = t - cell.i * 22; const step = Math.floor(local / STEP);
+          const sq = it.seq[it.chars.indexOf(cell.c)] || [];
+          if (local < 0) { busy = true; return; }
+          if (step < sq.length) { ch = sq[step]; busy = true; }
+        } else if (t !== Infinity && t < cell.i * per) { busy = true; return; }
+        const rows = glyph(ch);
+        ctx.fillStyle = cell.c.em ? C.signal : C[it.role.color];
+        const x0 = it.ox + ci * 6 * s * P, y0 = it.oy + li * it.leadRows * P;
+        for (let r = 0; r < 9; r++) for (let c = 0; c < 5; c++) if (rows[r] >> (4 - c) & 1)
+          for (let a = 0; a < s; a++) for (let b = 0; b < s; b++) dot(ctx, x0 + (c*s + b) * P, y0 + (r*s + a) * P, P);
+      }));
+      // hero cursor: the one looping animation
+      if (it.role === ROLES.hero && !busy && !reduced) {
+        const on = Math.floor(performance.now() / 530) % 2 === 0;
+        if (on) {
+          const last = it.lines.length - 1, col = it.lines[last].length + 1;
+          const x0 = it.ox + col * 6 * it.s * P, y0 = it.oy + last * it.leadRows * P;
+          if (x0 + 5 * it.s * P <= it.w) { ctx.fillStyle = C.signal;
+            for (let r = 0; r < 7 * it.s; r++) for (let c = 0; c < 4 * it.s; c++) dot(ctx, x0 + c * P, y0 + r * P, P); }
+        }
+        it.loop = true;
+      }
+    } else if (it.type === 'icon') {
+      const rows = iconRows(it.name); const total = rows.reduce((a, r) => a + r.toString(2).replace(/0/g,'').length, 0);
+      const per = 600 / Math.max(1, total); let n = 0;
+      ctx.fillStyle = C[it.color] || C.signal;
+      for (let r = 0; r < 15; r++) for (let c = 0; c < 15; c++) if (rows[r] >> (14 - c) & 1) {
+        if (t !== Infinity && t < n++ * per) { busy = true; continue; }
+        dot(ctx, it.ox + c * P, it.oy + r * P, P);
+      }
+    } else {
+      const lit = Math.max(1, Math.round(it.cols * it.frac));
+      const shown = t === Infinity ? lit : Math.min(lit, Math.floor(t / 28) - it.rank * 2);
+      if (shown < lit) busy = true;
+      for (let c = 0; c < it.cols; c++) for (let r = 0; r < 3; r++) {
+        ctx.fillStyle = c < shown ? (it.rank < 3 ? C.al : it.rank < 6 ? '#6a5a86' : C.dim) : '#1f2322';
+        dot(ctx, it.ox + c * P, it.oy + r * P, P);
+      }
+    }
+    return busy;
+  }
+
+  // ---------- animate once, on scroll into view ----------
+  let raf = null;
+  function tick(){
+    let any = false; const now = performance.now();
+    items.forEach(it => {
+      if (it.start == null || (it.done && !it.loop)) return;
+      const busy = draw(it, it.done ? Infinity : now - it.start);
+      if (!busy) it.done = true;
+      if (busy || it.loop) any = true;
+    });
+    raf = any ? requestAnimationFrame(tick) : null;
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const it = items.find(x => x.el === e.target);
+    if (it && it.start == null) { it.start = performance.now(); if (reduced) { it.done = true; draw(it, Infinity); } else if (!raf) raf = requestAnimationFrame(tick); }
+    io.unobserve(e.target);
+  }), {threshold:0.15});
+  function layoutAll(){ items.forEach(setup); }
+  document.fonts && document.fonts.ready.then(layoutAll);
+  layoutAll();
+  items.forEach(it => io.observe(it.el));
+  // reveal blocks
+  // blocks below the first screen fade in once; everything on screen at load stays put
+  const rio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('pre'); rio.unobserve(e.target); } }), {threshold:0.12});
+  if (!reduced) document.querySelectorAll('.rv').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pre'); rio.observe(el); } });
+  let rt, lastW = document.documentElement.clientWidth;
+  new ResizeObserver(() => { const w = document.documentElement.clientWidth; if (w !== lastW) { lastW = w; clearTimeout(rt); rt = setTimeout(() => { layoutAll(); if (!raf) raf = requestAnimationFrame(tick); }, 120); } }).observe(document.documentElement);
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layoutAll(); if (!raf) raf = requestAnimationFrame(tick); }, 120); });
+  // images can shift layout as they load; re-snap
+  document.querySelectorAll('img').forEach(img => img.complete || img.addEventListener('load', () => { clearTimeout(rt); rt = setTimeout(layoutAll, 80); }));
+})();
+</script>
+
+</body>
+</html>
