@@ -39,6 +39,12 @@ a{color:inherit}
 .wrap{max-width:1280px;margin:0 auto;padding-left:max(var(--gut), env(safe-area-inset-left, 0px));padding-right:max(var(--gut), env(safe-area-inset-right, 0px))}
 section{padding:clamp(72px,12vw,160px) 0 0}
 section:last-of-type{padding-bottom:clamp(72px,12vw,160px)}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+.card .links{margin-top:16px}
+.card .label.status{margin:12px 0 0;font-size:13px;line-height:1.6}
+.card .label.status span{white-space:nowrap}
+.card .jump{display:inline-block;margin-top:14px;font-weight:600;text-underline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 
@@ -224,10 +230,10 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <p class="label" style="margin:0 0 calc(var(--p)*6)">For Carola Pescio Canale · <b>Principal Product Designer, Rovo &amp; AI</b> · Atlassian · Julie Torrisi-Coffey</p>
+    <p class="label" style="margin:0 0 calc(var(--p)*6)">For Carola and Ratna · <b>Principal Product Designer, Rovo &amp; AI</b> · Atlassian · Julie Torrisi-Coffey</p>
     <div class="hero-grid">
       <div>
-        <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>Hi Carola</span></p>
+        <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>Hi Carola + Ratna,</span></p>
         <p class="jtc" data-role="hero">Help every team do its best <em>work.</em></p>
         <p class="sub"><span class="px">AI</span> is only as good as the <span class="px">structure</span> you give it.</p>
       </div>
@@ -246,6 +252,23 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
   </div>
 </section>
 
+<!-- FOLLOW-UP -->
+<section id="follow-up">
+  <div class="wrap">
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>Following up on our conversation</span></p>
+    <p class="jtc" data-role="h2">Four things you're <em>hiring</em> for.</p>
+    <p class="jtc" data-role="lead">You told me what this role needs. Here's where I've already done it.</p>
+    <div class="cards two">
+      <div class="card rv"><span class="ico" data-icon="grid"></span><h3>Ambiguity across teams and products</h3><p>That's most of my Meta story. The Comments case study walks through it: 9 teams, 30+ duplicate efforts, and no authority over any of them.</p><div class="links"><a class="btn" href="https://www.julietorrisi.com/home/modernizing-facebooks-comment-experience" target="_blank" rel="noopener">View Comments work <span class="arr">↗</span></a><span class="pwbox">Password: <code class="pwtext">3BillionPeople</code><button class="copy" type="button" data-copy="3BillionPeople" aria-label="Copy password">Copy</button></span></div></div>
+      <div class="card hi rv"><span class="ico" data-icon="edit" data-color="ink"></span><h3>A design point of view, with the why</h3><p>Every call I make comes with the rationale: the user problem, the tradeoff, the data. I prototype in code next to the engineers who ship it.</p><a class="jump" href="#how-i-work">See 08 · How I work ↓</a></div>
+      <div class="card rv"><span class="ico" data-icon="activity"></span><h3>A pulse on the market</h3><p>A retro agent reviews my week every Sunday: how well I used AI in my workflow, and which new tools and trends I missed. I'm building agents that grade how well a build uses the design system. And I'm about to ship Cadence, a Figma plugin that drafts rollout comms from your design system, so comms read the same no matter which team sends them.</p><p class="label status"><span>Retro agent <b>Running</b></span> · <span>Graders <b>In progress</b></span> · <span>Cadence <b>In progress</b></span></p><div class="links"><a class="btn" href="https://julie-torrisi.github.io/cadence-site/" target="_blank" rel="noopener">View Cadence <span class="arr">↗</span></a></div></div>
+      <div class="card rv"><span class="ico" data-icon="sparkle"></span><h3>Design system tokens past color and type</h3><p>I extended ours to photography, illustration and motion, named for the purpose each asset serves, so the wrong asset can't land in the wrong message.</p><a class="jump" href="#tokens">See 02 · Tokenized visual assets ↓</a></div>
+    </div>
+    <p class="jtc" data-role="body">None of this works from a blank prompt. It works because the rules, the voice and the decisions are written down where an agent can read them. Mine started as personal tools. The payoff is when a whole team works that way.</p>
+    <p class="jtc" data-role="kicker">> For Atlassian: Rovo already has the team's pages, tickets and Looms. Add the design system to that, and every agent knows what on-brand looks like.</p>
+  </div>
+</section>
+
 <!-- WHO -->
 <section>
   <div class="wrap">
@@ -253,7 +276,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
     <p class="jtc" data-role="h2">A native New Yorker, now in <em>Apex,</em> NC.</p>
     <div class="who">
       <div>
-        <p class="jtc" data-role="body">Creating anything is my happy place. Lately that's journaling in my Hobonichi Techo, needlepoint, crochet, and shooting on my Sony a6000 (most of these photos). Travel is a good reminder to find joy in daily rituals.</p>
+        <p class="jtc" data-role="body">Creating anything is my happy place. Lately that's journaling in my Hobonichi Techo, needlepoint, crochet, and shooting on my Sony a6000 (most of these photos). Travel is a good reminder to find joy in small daily rituals.</p>
         <ul class="likes rv">
           <li><b>Tuscany sabbatical</b><span>June in Spain and Switzerland. July in Tuscany for a 10-year anniversary with my partner Anthony, a chef, and our two kids, Cara and Jack. A social media detox and an intentional break from work.</span></li>
           <li><b>Food and travel</b><span>The history is in the food. Tuscan bread has no salt because of a medieval salt tax, and the recipe outlived it.</span></li>
@@ -295,13 +318,13 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 </section>
 
 <!-- 02 -->
-<section>
+<section id="tokens">
   <div class="wrap">
     <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>02 · Tokenized visual assets</span></p>
     <p class="jtc" data-role="h2">Prototypes on real tokens, so engineering <em>builds</em> what you designed.</p>
     <div class="cards two">
       <div class="card rv"><span class="ico" data-icon="close"></span><h3>The usual way</h3><p>Illustrations, photos and motion sit in an asset library. It drifts, design debt piles up, and everyone pretends not to notice.</p></div>
-      <div class="card hi rv"><span class="ico" data-icon="check" data-color="ink"></span><h3>What I built</h3><p>Design systems usually stop at color and type. I pushed ours further, so illustrations, photos and motion became tokens too. Each one is named for exactly where it's used, with strict naming rules. Engineers can maintain it, and people and AI can both read it.</p></div>
+      <div class="card hi rv"><span class="ico" data-icon="check" data-color="ink"></span><h3>What I built</h3><p>Design systems usually stop at color and type. I pushed ours further, so illustrations, photos and motion became tokens too. Each one is named for the purpose it serves, like an error, a milestone or an empty state, so the wrong asset can't end up in the wrong message. Engineers can maintain it, and people and AI can both read it.</p></div>
     </div>
     <div class="bignum">
       <p class="jtc" data-role="num" data-big="1" style="width:auto;min-width:0">160 → <em>10</em></p>
@@ -346,7 +369,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
       <figcaption class="label">From the Attention Signaling Playbook</figcaption>
     </figure>
     <p class="jtc" data-role="kicker">> For Atlassian: Rovo should show which page or ticket an answer came from, and make it easy to say no.</p>
-    <div class="links rv"><a class="btn" href="https://cadence-ai-workflow.netlify.app" target="_blank" rel="noopener">View Cadence <span class="arr">↗</span></a></div>
+    <div class="links rv"><a class="btn" href="https://julie-torrisi.github.io/cadence-site/" target="_blank" rel="noopener">View Cadence <span class="arr">↗</span></a></div>
   </div>
 </section>
 
@@ -419,7 +442,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 </section>
 
 <!-- 08 -->
-<section>
+<section id="how-i-work">
   <div class="wrap">
     <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>08 · How I work</span></p>
     <p class="jtc" data-role="h2">Hands-on. Leading through <em>influence.</em></p>
@@ -431,7 +454,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
       <div class="card rv"><span class="ico" data-icon="mail"></span><h3>Peers sent me their work</h3><p>Other design directors at Meta sent their designers to me for review before shipping. That's what a trusted partner looks like.</p></div>
       <div class="card rv"><span class="ico" data-icon="clock"></span><h3>Meetings earn their spot</h3><p>Sprints, retros, crits and roadmaps with clear go/no-go calls. Decisions get written down so they travel without me. Useless meeting? We kill it.</p></div>
       <div class="card rv"><span class="ico" data-icon="activity"></span><h3>Leading through change</h3><p>Managed 4 and directed 15 designers across 9 teams at Meta, through 5 manager changes. A clear plan kept us moving.</p></div>
-      <div class="card hi rv"><span class="ico" data-icon="external" data-color="ink"></span><h3>See the work</h3><p><a href="https://www.julietorrisi.com/home/modernizing-facebooks-comment-experience" target="_blank" rel="noopener">Facebook Comments redesign</a><br><a href="https://www.julietorrisi.com/home/architecting-facebooks-brand-refresh-inproduct" target="_blank" rel="noopener">Facebook brand refresh in product</a><br><span class="pwbox in-card">Password: <code class="pwtext">3BillionPeople</code><button class="copy" type="button" data-copy="3BillionPeople" aria-label="Copy password">Copy</button></span><br><a href="https://julietorrisi.com/home/bridge-bank" target="_blank" rel="noopener">Bridge Bank</a><br><a href="https://cadence-ai-workflow.netlify.app" target="_blank" rel="noopener">Cadence</a></p></div>
+      <div class="card hi rv"><span class="ico" data-icon="external" data-color="ink"></span><h3>See the work</h3><p><a href="https://www.julietorrisi.com/home/modernizing-facebooks-comment-experience" target="_blank" rel="noopener">Facebook Comments redesign</a><br><a href="https://www.julietorrisi.com/home/architecting-facebooks-brand-refresh-inproduct" target="_blank" rel="noopener">Facebook brand refresh in product</a><br><span class="pwbox in-card">Password: <code class="pwtext">3BillionPeople</code><button class="copy" type="button" data-copy="3BillionPeople" aria-label="Copy password">Copy</button></span><br><a href="https://julietorrisi.com/home/bridge-bank" target="_blank" rel="noopener">Bridge Bank</a><br><a href="https://julie-torrisi.github.io/cadence-site/" target="_blank" rel="noopener">Cadence</a></p></div>
     </div>
     <div class="gap"></div>
     <p class="jtc" data-role="kicker">> For Atlassian: I'd teach designers to put their thinking into docs and tickets AI can use, so AI scales the team's judgment, not just its output.</p>
@@ -505,7 +528,7 @@ document.querySelectorAll('video').forEach(v => { v.muted = true; const p = v.pl
 <section>
   <div class="wrap">
     <p class="jtc" data-role="h2">Thank <em>you.</em></p>
-    <p class="jtc" data-role="body">I'd love to talk about how structured thinking makes Rovo a better teammate.</p>
+    <p class="jtc" data-role="body">Thank you for today. I'd love to keep going on how a team's written-down thinking makes Rovo a better teammate.</p>
     <div class="links rv">
       <a class="btn" href="https://www.linkedin.com/in/julietorrisi/" target="_blank" rel="noopener">LinkedIn <span class="arr">↗</span></a>
       <a class="btn" href="https://julietorrisi.com" target="_blank" rel="noopener">julietorrisi.com <span class="arr">↗</span></a>
