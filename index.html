@@ -9,9 +9,11 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800&family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
 :root{
+  --font-serif:"Instrument Serif",Georgia,serif;
+  --px-grain:30; /* pixel serif: cells per em */
   --bg:#0b0c0c; --unlit:#161918; --dim:#30353a; --grey:#9da3a1; --ink:#f7f8f8;
   /* Atlassian blue, sampled from atlassian.com/software/rovo computed styles (#1868db buttons, #1558bc text, #123263 hover) */
   --al:#1558bc; --al-dark:#1868db; --al-light:#1868db; --al-press:#123263;
@@ -48,6 +50,14 @@ html a,html button,html .btn,html .tdot,html .tarrow,html .copy,html [role="butt
 .jtc canvas{display:block;max-width:100%}
 .hero-grid>*,.split>*,.who>*,.cards>*,.bignum>*,.step>*{min-width:0}
 .jtc[data-role="kicker"]{margin-bottom:calc(var(--p)*6)}
+/* kicker over a title: dot arrow + Instrument Serif label */
+.kick{display:flex;align-items:flex-start;gap:calc(var(--p)*3);margin:0 0 calc(var(--p)*6);font-family:var(--font-serif);font-weight:400;font-size:calc(var(--p)*9);line-height:1.1;color:var(--grey)}
+.kick .jtc[data-role="arrow"]{flex:none;width:calc(var(--p)*7)}
+/* lift the label so the arrow point meets the middle of the capital letters; the arrow never moves */
+.kick{--kick-lift:4.5px}
+@media (max-width:1023px){.kick{--kick-lift:5.5px}}
+@media (max-width:639px){.kick{--kick-lift:0px}}
+.kick>span:last-child{position:relative;top:calc(var(--kick-lift)*-1)}
 .jtc[data-role="h2"]{margin-bottom:calc(var(--p)*8)}
 .jtc[data-role="lead"],.jtc[data-role="body"]{margin-bottom:calc(var(--p)*7)}
 .gap{height:calc(var(--p)*6)}
@@ -61,6 +71,10 @@ html a,html button,html .btn,html .tdot,html .tarrow,html .copy,html [role="butt
 .hero{padding-top:clamp(40px,8vw,96px)}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:start}
 @media (max-width:899px){.hero-grid{grid-template-columns:1fr}}
+/* hero subtitle: Instrument Serif, key words rasterised to a pixel grid */
+.sub{margin:calc(var(--p)*8) 0 0;font-family:var(--font-serif);font-weight:400;font-size:clamp(34px,4.4vw,58px);line-height:1.04;color:var(--ink);text-wrap:balance}
+.sub .px{color:var(--signal);white-space:nowrap}
+.sub .px canvas{display:inline-block;image-rendering:pixelated}
 .call{position:relative;margin:0}
 .call img{display:block;width:100%;height:auto;border-radius:10px}
 .cursor{position:absolute;left:53%;top:37%;pointer-events:none}
@@ -213,8 +227,9 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
     <p class="label" style="margin:0 0 calc(var(--p)*6)">For Carola Pescio Canale · <b>Principal Product Designer, Rovo &amp; AI</b> · Atlassian · Julie Torrisi-Coffey</p>
     <div class="hero-grid">
       <div>
-        <p class="jtc" data-role="kicker">> Hi Carola</p>
+        <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>Hi Carola</span></p>
         <p class="jtc" data-role="hero">Help every team do its best <em>work.</em></p>
+        <p class="sub"><span class="px">AI</span> is only as good as the <span class="px">structure</span> you give it.</p>
       </div>
       <figure class="call rv">
         <img src="img/call.jpg" width="1112" height="1400" alt="Julie laughing on a video call with a fellow designer">
@@ -234,7 +249,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- WHO -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> Who is Julie?</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>Who is Julie?</span></p>
     <p class="jtc" data-role="h2">A native New Yorker, now in <em>Apex,</em> NC.</p>
     <div class="who">
       <div>
@@ -266,7 +281,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 01 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 01 · Facebook brand refresh, in product</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>01 · Facebook brand refresh, in product</span></p>
     <p class="jtc" data-role="h2">Standards other senior designers <em>follow.</em></p>
     <p class="jtc" data-role="body">Facebook's brand refresh needed one standard for 300+ designers. I made the case for the Visual Asset Framework, ran it like a product and got it funded. Other teams adopted it.</p>
     <div class="cards">
@@ -282,7 +297,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 02 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 02 · Tokenized visual assets</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>02 · Tokenized visual assets</span></p>
     <p class="jtc" data-role="h2">Prototypes on real tokens, so engineering <em>builds</em> what you designed.</p>
     <div class="cards two">
       <div class="card rv"><span class="ico" data-icon="close"></span><h3>The usual way</h3><p>Illustrations, photos and motion sit in an asset library. It drifts, design debt piles up, and everyone pretends not to notice.</p></div>
@@ -299,7 +314,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 03 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 03 · Bridge Bank · Goldman Sachs Private Wealth Management</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>03 · Bridge Bank · Goldman Sachs Private Wealth Management</span></p>
     <p class="jtc" data-role="h2">Show people only what they need to <em>act.</em></p>
     <p class="jtc" data-role="lead">One question I bring to every product: how much information does someone need to take action?</p>
     <p class="jtc" data-role="body">At Goldman Sachs, that meant trust, joint, business, loan and credit accounts, on a phone, for advisors and their clients. The hard part wasn't fitting it all in. It was deciding what people actually need to make a decision, and leaving the rest out.</p>
@@ -318,7 +333,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 04 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 04 · Attention and AI</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>04 · Attention and AI</span></p>
     <p class="jtc" data-role="h2">AI is only as good as the <em>structure</em> you give it.</p>
     <p class="jtc" data-role="body">I wrote the Attention Signaling Playbook for Facebook's 16 billion daily notifications. The same idea runs through all my AI work: AI suggests, people decide.</p>
     <div class="cards">
@@ -338,7 +353,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 05 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 05 · From the attention signaling logic</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>05 · From the attention signaling logic</span></p>
     <p class="jtc" data-role="h2">Don't <em>interrupt</em> people unless you have to.</p>
     <div class="split">
       <div>
@@ -366,7 +381,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 06 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 06 · What I'd bring to Rovo</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>06 · What I'd bring to Rovo</span></p>
     <p class="jtc" data-role="h2">From one-off prompts to a real <em>teammate.</em></p>
     <p class="jtc" data-role="body">Rovo already sits on the structure teams build every day: pages, tickets, briefs and plans. The clearer that structure, the better Rovo thinks with them. Here's where my work fits.</p>
     <ol class="steps">
@@ -383,7 +398,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 07 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 07 · Executive escalations at Meta</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>07 · Executive escalations at Meta</span></p>
     <p class="jtc" data-role="h2">Any challenge. <em>Stabilized,</em> then handed off.</p>
     <p class="jtc" data-role="lead">On top of leading the Comments redesign, I took on 3 executive escalations, one after another.</p>
     <p class="jtc" data-role="body">Each one was in a part of the app I didn't own, with no authority over its designers. I found common ground to build from, got the work back on track, then handed it to another designer and went back to running my program on Comments.</p>
@@ -406,7 +421,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 08 -->
 <section>
   <div class="wrap">
-    <p class="jtc" data-role="kicker">> 08 · How I work</p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>08 · How I work</span></p>
     <p class="jtc" data-role="h2">Hands-on. Leading through <em>influence.</em></p>
     <p class="jtc" data-role="lead">I lead by example. Designers follow a designer whose craft proves their level, so respect gets earned by the work.</p>
     <p class="jtc" data-role="body">I'm a natural culture builder and a glass-half-full optimist. I don't start with the constraints that stop us. I start with what we can do.</p>
@@ -516,7 +531,8 @@ const ICONS = {"star":"0000000000800080014001401e3c08080410022005d00630041000000
     num:{s:2,upper:true,cyc:true,color:'ink',fit:'line'},
     lead:{s:1,upper:false,cyc:false,color:'ink'},
     body:{s:1,upper:false,cyc:false,color:'grey'},
-    kicker:{s:1,upper:true,cyc:false,color:'grey'}
+    kicker:{s:1,upper:true,cyc:false,color:'grey'},
+    arrow:{s:1,upper:false,cyc:false,color:'grey'}
   };
   const pitch = () => innerWidth >= 1024 ? 5 : innerWidth >= 640 ? 4 : 3;
   const glyphCache = {};
@@ -745,5 +761,52 @@ const ICONS = {"star":"0000000000800080014001401e3c08080410022005d00630041000000
 })();
 </script>
 
+<script>
+// pixel serif: rasterise words on a coarse grid, scale up with hard edges.
+// .sub .px  -> grain from --px-grain (cells per em)
+(function(){
+  const words = [];
+  const wrapWord = (parent, t, before) => {
+    const w = document.createElement('span'); w.className = 'pxw'; w.setAttribute('aria-hidden', 'true');
+    const cv = document.createElement('canvas'); w.append(cv);
+    parent.insertBefore(w, before || null); words.push({host: parent, t, cv});
+  };
+  document.querySelectorAll('.sub .px').forEach(el => {
+    const t = el.textContent; el.textContent = '';
+    const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = t; el.append(sr);
+    wrapWord(el, t);
+  });
+  const ctx = document.createElement('canvas').getContext('2d');
+  function draw(){
+    const root = getComputedStyle(document.documentElement);
+    const grain = parseFloat(root.getPropertyValue('--px-grain')) || 30;
+    const styles = new Map();
+    words.forEach(o => {
+      let st = styles.get(o.host);
+      if (!st) {
+        const cs = getComputedStyle(o.host), size = parseFloat(cs.fontSize);
+        const cell = parseFloat(cs.getPropertyValue('--px-cell'));
+        const k = cell > 0 ? cell : size / grain;          // CSS px per cell
+        st = {k, low: size / k, color: cs.color, family: cs.fontFamily, weight: cs.fontWeight};
+        styles.set(o.host, st);
+      }
+      const font = `${st.weight} ${st.low}px ${st.family}`;
+      ctx.font = font; const m = ctx.measureText(o.t);
+      const asc = Math.ceil(m.fontBoundingBoxAscent), desc = Math.ceil(m.fontBoundingBoxDescent);
+      const cv = o.cv, x = cv.getContext('2d', {willReadFrequently: true});
+      cv.width = Math.ceil(m.width) + 1; cv.height = asc + desc;
+      x.font = font; x.fillStyle = st.color; x.fillText(o.t, 0, asc);
+      const d = x.getImageData(0, 0, cv.width, cv.height);
+      for (let i = 3; i < d.data.length; i += 4) d.data[i] = d.data[i] > 80 ? 255 : 0;
+      x.putImageData(d, 0, 0);
+      cv.style.width = (cv.width * st.k) + 'px'; cv.style.height = (cv.height * st.k) + 'px';
+      cv.style.verticalAlign = (-desc * st.k) + 'px';
+    });
+  }
+  document.fonts.load('400 1em "Instrument Serif"').then(draw, draw);
+  let raf, lastW = innerWidth;
+  addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); });
+})();
+</script>
 </body>
 </html>
