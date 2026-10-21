@@ -81,7 +81,7 @@ html a,html button,html .btn,html .tdot,html .tarrow,html .copy,html [role="butt
 .sub{margin:calc(var(--p)*8) 0 0;font-family:var(--font-serif);font-weight:400;font-size:clamp(34px,4.4vw,58px);line-height:1.04;color:var(--ink);text-wrap:balance}
 .sub .px{color:var(--signal);white-space:nowrap}
 @media (min-width:1200px){.sub{white-space:nowrap}}
-.sub .px canvas,.kick .px canvas{display:inline-block;image-rendering:pixelated}
+.sub .px canvas,.kick .px canvas{display:inline-block;image-rendering:pixelated;filter:url(#px-hard)}
 .kick .px{color:var(--signal);white-space:nowrap}
 .call{position:relative;margin:0}
 .call img{display:block;width:100%;height:auto;border-radius:10px}
@@ -801,6 +801,14 @@ const ICONS = {"star":"0000000000800080014001401e3c08080410022005d00630041000000
     const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = t; el.append(sr);
     wrapWord(el, t);
   });
+  // hard pixel edges come from an SVG alpha filter at display time, so nothing reads the canvas back
+  // (privacy extensions often block canvas readback, which blanked the pixel words)
+  if (!document.getElementById('px-hard')) {
+    const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width', '0'); svg.setAttribute('height', '0'); svg.setAttribute('aria-hidden', 'true'); svg.style.position = 'absolute';
+    svg.innerHTML = '<filter id="px-hard"><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 1"/></feComponentTransfer></filter>';
+    document.body.appendChild(svg);
+  }
   const ctx = document.createElement('canvas').getContext('2d');
   function draw(){
     const root = getComputedStyle(document.documentElement);
@@ -818,12 +826,9 @@ const ICONS = {"star":"0000000000800080014001401e3c08080410022005d00630041000000
       const font = `${st.weight} ${st.low}px ${st.family}`;
       ctx.font = font; const m = ctx.measureText(o.t);
       const asc = Math.ceil(m.fontBoundingBoxAscent), desc = Math.ceil(m.fontBoundingBoxDescent);
-      const cv = o.cv, x = cv.getContext('2d', {willReadFrequently: true});
+      const cv = o.cv, x = cv.getContext('2d');
       cv.width = Math.ceil(m.width) + 1; cv.height = asc + desc;
       x.font = font; x.fillStyle = st.color; x.fillText(o.t, 0, asc);
-      const d = x.getImageData(0, 0, cv.width, cv.height);
-      for (let i = 3; i < d.data.length; i += 4) d.data[i] = d.data[i] > 80 ? 255 : 0;
-      x.putImageData(d, 0, 0);
       cv.style.width = (cv.width * st.k) + 'px'; cv.style.height = (cv.height * st.k) + 'px';
       cv.style.verticalAlign = (-desc * st.k) + 'px';
     });
