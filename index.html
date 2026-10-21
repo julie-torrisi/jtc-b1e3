@@ -80,7 +80,9 @@ html a,html button,html .btn,html .tdot,html .tarrow,html .copy,html [role="butt
 /* hero subtitle: Instrument Serif, key words rasterised to a pixel grid */
 .sub{margin:calc(var(--p)*8) 0 0;font-family:var(--font-serif);font-weight:400;font-size:clamp(34px,4.4vw,58px);line-height:1.04;color:var(--ink);text-wrap:balance}
 .sub .px{color:var(--signal);white-space:nowrap}
-.sub .px canvas{display:inline-block;image-rendering:pixelated}
+@media (min-width:1200px){.sub{white-space:nowrap}}
+.sub .px canvas,.kick .px canvas{display:inline-block;image-rendering:pixelated}
+.kick .px{color:var(--signal);white-space:nowrap}
 .call{position:relative;margin:0}
 .call img{display:block;width:100%;height:auto;border-radius:10px}
 .cursor{position:absolute;left:53%;top:37%;pointer-events:none}
@@ -235,7 +237,6 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
       <div>
         <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>Hi Carola and Ratna,</span></p>
         <p class="jtc" data-role="hero">I help every team do its best <em>work.</em></p>
-        <p class="sub"><span class="px">AI</span> is only as good as the <span class="px">structure</span> you give it.</p>
       </div>
       <figure class="call rv">
         <img src="img/call.jpg" width="1112" height="1400" alt="Julie laughing on a video call with a fellow designer">
@@ -245,6 +246,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
         </div>
       </figure>
     </div>
+    <p class="sub">And I'd love to do it <span class="px">alongside</span> you at Atlassian.</p>
     <div class="gap"></div>
     <p class="jtc" data-role="lead">I've owned a surface 3 billion people use, across web and native.</p>
     <p class="jtc" data-role="body">Almost five years at Meta as a principal product designer. I owned Facebook Comments across iOS, Android, web, mobile web and FB Lite, and built the Visual Asset Framework, a design system 300+ designers adopted. I prototype in Claude Code, Cursor and SwiftUI.</p>
@@ -304,7 +306,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 01 -->
 <section>
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>01 · Facebook brand refresh, in product</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">01</span> · Facebook brand refresh, in product</span></p>
     <p class="jtc" data-role="h2">Standards other senior designers <em>follow.</em></p>
     <p class="jtc" data-role="body">Facebook's brand refresh needed one standard for 300+ designers. I made the case for the Visual Asset Framework, ran it like a product and got it funded. Other teams adopted it.</p>
     <div class="cards">
@@ -320,7 +322,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 02 -->
 <section id="tokens">
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>02 · Tokenized visual assets</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">02</span> · Tokenized visual assets</span></p>
     <p class="jtc" data-role="h2">Prototypes on real tokens, so engineering <em>builds</em> what you designed.</p>
     <div class="cards two">
       <div class="card rv"><span class="ico" data-icon="close"></span><h3>The usual way</h3><p>Illustrations, photos and motion sit in an asset library. It drifts, design debt piles up, and everyone pretends not to notice.</p></div>
@@ -337,7 +339,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 03 -->
 <section>
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>03 · Bridge Bank · Goldman Sachs Private Wealth Management</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">03</span> · Bridge Bank · Goldman Sachs Private Wealth Management</span></p>
     <p class="jtc" data-role="h2">Show people only what they need to <em>act.</em></p>
     <p class="jtc" data-role="lead">One question I bring to every product: how much information does someone need to take action?</p>
     <p class="jtc" data-role="body">At Goldman Sachs, that meant trust, joint, business, loan and credit accounts, on a phone, for advisors and their clients. The hard part wasn't fitting it all in. It was deciding what people actually need to make a decision, and leaving the rest out.</p>
@@ -356,7 +358,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 04 -->
 <section>
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>04 · Attention and AI</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">04</span> · Attention and AI</span></p>
     <p class="jtc" data-role="h2">AI is only as good as the <em>structure</em> you give it.</p>
     <p class="jtc" data-role="body">I wrote the Attention Signaling Playbook for Facebook's 16 billion daily notifications. The same idea runs through all my AI work: AI suggests, people decide.</p>
     <div class="cards">
@@ -376,7 +378,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 05 -->
 <section>
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>05 · From the attention signaling logic</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">05</span> · From the attention signaling logic</span></p>
     <p class="jtc" data-role="h2">Don't <em>interrupt</em> people unless you have to.</p>
     <div class="split">
       <div>
@@ -404,7 +406,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 06 -->
 <section>
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>06 · What I'd bring to Rovo</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">06</span> · What I'd bring to Rovo</span></p>
     <p class="jtc" data-role="h2">From one-off prompts to a real <em>teammate.</em></p>
     <p class="jtc" data-role="body">Rovo already sits on the structure teams build every day: pages, tickets, briefs and plans. The clearer that structure, the better Rovo thinks with them. Here's where my work fits.</p>
     <ol class="steps">
@@ -421,7 +423,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 07 -->
 <section>
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>07 · Executive escalations at Meta</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">07</span> · Executive escalations at Meta</span></p>
     <p class="jtc" data-role="h2">Any challenge. <em>Stabilized,</em> then handed off.</p>
     <p class="jtc" data-role="lead">On top of leading the Comments redesign, I took on 3 executive escalations, one after another.</p>
     <p class="jtc" data-role="body">Each one was in a part of the app I didn't own, with no authority over its designers. I found common ground to build from, got the work back on track, then handed it to another designer and went back to running my program on Comments.</p>
@@ -444,7 +446,7 @@ blockquote p{margin:0 0 12px;font-size:clamp(18px,2.2vw,22px);line-height:1.5;co
 <!-- 08 -->
 <section id="how-i-work">
   <div class="wrap">
-    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span>08 · How I work</span></p>
+    <p class="kick"><span class="jtc" data-role="arrow" aria-hidden="true">&gt;</span><span><span class="px">08</span> · How I work</span></p>
     <p class="jtc" data-role="h2">Hands-on. Leading through <em>influence.</em></p>
     <p class="jtc" data-role="lead">I lead by example. Designers follow a designer whose craft proves their level, so respect gets earned by the work.</p>
     <p class="jtc" data-role="body">I'm a natural culture builder and a glass-half-full optimist. I don't start with the constraints that stop us. I start with what we can do.</p>
@@ -794,7 +796,7 @@ const ICONS = {"star":"0000000000800080014001401e3c08080410022005d00630041000000
     const cv = document.createElement('canvas'); w.append(cv);
     parent.insertBefore(w, before || null); words.push({host: parent, t, cv});
   };
-  document.querySelectorAll('.sub .px').forEach(el => {
+  document.querySelectorAll('.sub .px, .kick .px').forEach(el => {
     const t = el.textContent; el.textContent = '';
     const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = t; el.append(sr);
     wrapWord(el, t);
